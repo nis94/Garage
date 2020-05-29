@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace GarageLogic
 {
-    class Truck
+    internal class Truck : Vehicle
     {
+        bool m_isCarryingHazardousMaterials;
+        float m_ChargeDisplacement;
+
+        public Truck()
+        {
+
+        }
+
+        public int MyProperty { get; set; }
+        public int MyProperty { get; set; }
+
     }
+
 }

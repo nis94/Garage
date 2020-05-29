@@ -37,10 +37,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Car.cs" />
+    <Compile Include="eColor.cs" />
+    <Compile Include="eNumOfDoors.cs" />
+    <Compile Include="eLicenseType.cs" />
     <Compile Include="GarageManager.cs" />
     <Compile Include="Motorbike.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Truck.cs" />
-    <Compile Include="Vihical.cs" />
+    <Compile Include="Vehicle.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

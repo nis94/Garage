@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace GarageLogic
 {
-    class Motorbike
+    internal class Motorbike : Vehicle
     {
+        private eLicenseType m_LicenseType;
+        private int m_EngineDisplacement;
+
+        public Motorbike()
+        {
+
+        }
+
+        public int MyProperty { get; set; }
+        public int MyProperty { get; set; }
     }
 }

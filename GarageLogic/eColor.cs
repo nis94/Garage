@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace GarageLogic
 {
-    class Vihical
+    enum eColor
     {
+        red,
+        white,
+        black,
+        silver   
     }
 }
