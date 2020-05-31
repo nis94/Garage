@@ -12,6 +12,7 @@ namespace GarageLogic
         protected string m_LicensNumber;
         protected float m_EnergyPresentage;
         protected List<Wheel> m_Wheels;
+        protected Engine m_Engine; 
 
         public Vehicle()
         {
