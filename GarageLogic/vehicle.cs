@@ -8,25 +8,97 @@ namespace GarageLogic
 {
     internal abstract class Vehicle
     {
-        protected string m_Model;
-        protected string m_LicensNumber;
+        protected readonly string r_Model;
+        protected readonly string r_LicensNumber;
         protected float m_EnergyPresentage;
         protected List<Wheel> m_Wheels;
-        protected Engine m_Engine; 
+        protected Engine m_Engine;
+        //protected int m_NumberOfWheels;
+        //protected eVehicleType m_eType;
 
-        public Vehicle()
+        public Vehicle(string i_Model, string i_LicensNumber, float i_EnergyPresentage, int i_NumOfWheels,
+            float i_MaxAirPressure, string i_ManufacturerName, eEngineType EngineType)
         {
-                    
+            r_Model = i_Model;
+            r_LicensNumber = i_LicensNumber;
+            m_EnergyPresentage = i_EnergyPresentage;
+            m_Wheels = new List<Wheel>();
+            Wheel wheel = new Wheel(i_MaxAirPressure, i_ManufacturerName);
+
+            for (int i = 0; i < i_NumOfWheels; i++)
+            {
+                m_Wheels.Add(wheel);
+            }
         }
-        public int MyProperty { get; set; }
 
-        public int MyProperty { get; set; }
+//        public string VehicleDetails()
+//        {
+//            StringBuilder io_VehicleData = new StringBuilder();
+//            string i_Data = string.Format(@"License Number : {0}
+//Vehicle Model: {1}
+//Energy Presentage: {2}
+//Wheels Manufacturer Name: {3}
+//Current Wheel air pressure: {4}
+//Engine Type: {5}", m_PlateNumber, m_ModelName, m_RemainingEnergyPrecent, m_Wheels[0].ManufacturerName, m_Wheels[0].CurrentAirPressure, m_Engine.Type);
 
-        public int MyProperty { get; set; }
+//            io_VehicleData.Append(i_Data);
 
-        public int MyProperty { get; set; }
+//            FuleEngine FuelToCompare = Engine as FuleEngine;
+//            if (FuelToCompare != null)
+//            {
+//                eFuelType i_FuelType = FuelToCompare.eFuelType;
+//                io_VehicleData.Append(Environment.NewLine + "Fuel Type: " + i_FuelType);
+//            }
 
+//            return io_VehicleData.ToString();
+//        }
 
+        public string Model
+        {
+            get
+            {
+                return r_Model;
+            }
+        }
 
+        public string LicensNumber
+        {
+            get
+            {
+                return r_LicensNumber;
+            }
+        }
+
+        public float EnergyPresentage
+        {
+            get
+            {
+                return m_EnergyPresentage;
+            }
+            set
+            {
+                m_EnergyPresentage = value;
+            }
+        }
+
+        public Engine Engine
+        {
+            get
+            {
+                return m_Engine;
+            }
+        }
+
+        public Wheel this[int i]
+        {
+            get
+            {
+                return m_Wheels[i];
+            }
+            set
+            {
+                m_Wheels[i] = value;
+            }
+        }
     }
 }
