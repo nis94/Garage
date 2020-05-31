@@ -10,7 +10,7 @@ namespace GarageLogic
     {
         private readonly eFuelType r_FuelType; 
 
-        public FuelEngine(float i_MaxCapacity, eFuelType i_Type) : base(i_MaxCapacity, eEngineType.Fuel)
+        public FuelEngine(float i_MaxTankCapacity, eFuelType i_Type) : base(i_MaxTankCapacity, eEngineType.Fuel)
         {
             r_FuelType = i_Type; 
         }
