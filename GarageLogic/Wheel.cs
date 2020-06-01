@@ -14,6 +14,20 @@ namespace GarageLogic
             r_ManufacturerName = i_ManufacturerName;
         }
 
+        public void InflateWheel (float i_AmountOfAirToAdd)
+        {
+            float UpdatedAirPressure = i_AmountOfAirToAdd + m_CurrentAirPressure;
+            if (UpdatedAirPressure > r_MaxAirPressure)
+            {
+                Console.WriteLine("Exceeding the Maximum Air pressure"); //to do exception
+            }
+            else
+            {
+                m_CurrentAirPressure = UpdatedAirPressure; 
+            }
+
+        }
+
         public string ManufacturerName
         {
             get { return r_ManufacturerName; }
@@ -28,20 +42,6 @@ namespace GarageLogic
         public float MaxAirPressure
         {
             get { return r_MaxAirPressure; }
-        }
-
-        public void InflateWheel (float i_AmountOfAirToAdd)
-        {
-            float UpdatedAirPressure = i_AmountOfAirToAdd + m_CurrentAirPressure;
-            if (UpdatedAirPressure > r_MaxAirPressure)
-            {
-                Console.WriteLine("Exceeding the Maximum Air pressure"); //to do exception
-            }
-            else
-            {
-                m_CurrentAirPressure = UpdatedAirPressure; 
-            }
-
         }
     }
 }

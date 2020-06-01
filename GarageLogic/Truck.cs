@@ -11,12 +11,12 @@ namespace GarageLogic
         bool m_IsCarryingHazardousMaterials;
         float m_ChargeDisplacement;
 
-        public Truck(bool i_IsCarryingHazardousMaterials, float i_ChargeDisplacement, string i_Model, eEngineType i_EngineType, string i_LicensNumber,
-             string i_WheelManufacturerName) : base(i_Model, i_LicensNumber, 16, 28, i_WheelManufacturerName)
+        public Truck(bool i_IsCarryingHazardousMaterials, float i_ChargeDisplacement, string i_Model, string i_LicensNumber,
+             string i_WheelManufacturerName, float i_CurrentEnergyCapacity) : base(i_Model, i_LicensNumber, 16, 28, i_WheelManufacturerName)
         {
             m_IsCarryingHazardousMaterials = i_IsCarryingHazardousMaterials;
             m_ChargeDisplacement = i_ChargeDisplacement;
-            m_Engine = new FuelEngine(120f, eFuelType.Soler);
+            m_Engine = new FuelEngine(120f, i_CurrentEnergyCapacity, eFuelType.Soler);
             m_EnergyPresentage = (m_Engine.CurrentEnergyCapacity / m_Engine.MaxEnergyCapacity) * 100;
         }
 

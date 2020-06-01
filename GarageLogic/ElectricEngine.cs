@@ -4,7 +4,7 @@ namespace GarageLogic
 {
     public class ElectricEngine : Engine
     {
-        public ElectricEngine( float i_MaxBatteryCapacity): base(i_MaxBatteryCapacity, eEngineType.Electric)
+        public ElectricEngine( float i_MaxBatteryCapacity, float i_CurrentBatteryCapacity) : base(i_MaxBatteryCapacity, i_CurrentBatteryCapacity, eEngineType.Electric)
         {
         }
         internal void ReCharge(float i_NumberOfHoursToAdd)

@@ -12,9 +12,10 @@ namespace GarageLogic
         protected readonly float r_MaxEnergyCapacity;
         protected readonly eEngineType r_EngineType;
 
-        public Engine(float i_MaxEnergyCapacity, eEngineType i_EngineType)
+        public Engine(float i_MaxEnergyCapacity, float i_CurrentEnergyCapacity, eEngineType i_EngineType)
         {
             r_MaxEnergyCapacity = i_MaxEnergyCapacity;
+            m_CurrentEnergyCapacity = i_CurrentEnergyCapacity;
             r_EngineType = i_EngineType;
         }
 
