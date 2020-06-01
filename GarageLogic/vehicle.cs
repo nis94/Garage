@@ -16,14 +16,13 @@ namespace GarageLogic
         //protected int m_NumberOfWheels;
         //protected eVehicleType m_eType;
 
-        public Vehicle(string i_Model, string i_LicensNumber, float i_EnergyPresentage, int i_NumOfWheels,
-            float i_MaxAirPressure, string i_ManufacturerName, eEngineType EngineType)
+        public Vehicle(string i_Model, string i_LicensNumber, int i_NumOfWheels, float i_MaxAirPressure, 
+            string i_WheelManufacturerName, eEngineType EngineType)
         {
             r_Model = i_Model;
             r_LicensNumber = i_LicensNumber;
-            m_EnergyPresentage = i_EnergyPresentage;
             m_Wheels = new List<Wheel>();
-            Wheel wheel = new Wheel(i_MaxAirPressure, i_ManufacturerName);
+            Wheel wheel = new Wheel(i_MaxAirPressure, i_WheelManufacturerName);
 
             for (int i = 0; i < i_NumOfWheels; i++)
             {

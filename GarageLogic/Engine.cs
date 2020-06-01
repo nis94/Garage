@@ -18,13 +18,13 @@ namespace GarageLogic
             r_EngineType = i_EngineType;
         }
 
-        public float CurrentCapacity
+        public float CurrentEnergyCapacity
         {
             get { return m_CurrentEnergyCapacity; }
             set { m_CurrentEnergyCapacity = value; }
         }
 
-        public float MaxCapacity
+        public float MaxEnergyCapacity
         {
             get { return r_MaxEnergyCapacity; }
         }

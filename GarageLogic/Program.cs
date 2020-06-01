@@ -8,9 +8,9 @@ namespace GarageLogic
 {
     class Program
     {
-        public static void main()
+        public static void Main()
         {
-
+            Motorbike Shalvata = new Motorbike(eLicenseType.A, 250, "JoyMax", eEngineType.Fuel, "B0548965", "Ogja"); // test
         }
     }
 }

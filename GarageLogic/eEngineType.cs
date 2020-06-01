@@ -4,7 +4,7 @@ namespace GarageLogic
 {
     public enum eEngineType
     {
-        Fuel = 0, 
-        Electric = 1
+        Fuel, 
+        Electric 
     }
 }

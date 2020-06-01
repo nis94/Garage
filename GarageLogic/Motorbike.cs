@@ -8,12 +8,12 @@ namespace GarageLogic
         private eLicenseType m_LicenseType;
         private int m_EngineDisplacement;
 
-        public Motorbike(eLicenseType i_LicenseType, int i_EngineDisplacement, string i_Model, eEngineType i_EngineType, string i_LicensNumber, float i_EnergyPresentage, 
-            float i_MaxAirPressure, string i_ManufacturerName) : base(i_Model, i_LicensNumber, i_EnergyPresentage, 2, 30, i_ManufacturerName, i_EngineType)
+        public Motorbike(eLicenseType i_LicenseType, int i_EngineDisplacement, string i_Model, eEngineType i_EngineType,
+            string i_LicensNumber, string i_WheelManufacturerName) : base(i_Model, i_LicensNumber, 2, 30, i_WheelManufacturerName, i_EngineType)
         {
             m_LicenseType = i_LicenseType;
             m_EngineDisplacement = i_EngineDisplacement;
-            
+
             if (i_EngineType.Equals(eEngineType.Electric)) // TO DO - override the Equals method
             {
                 m_Engine = new ElectricEngine(1.2f);
@@ -22,6 +22,7 @@ namespace GarageLogic
             {
                 m_Engine = new FuelEngine(7f, eFuelType.Octan95);
             }
+            m_EnergyPresentage = (m_Engine.MaxEnergyCapacity / m_Engine.CurrentEnergyCapacity) * 100;
         }
 
         public eLicenseType LicenseType

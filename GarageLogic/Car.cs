@@ -12,7 +12,7 @@ namespace GarageLogic
         eNumOfDoors m_NumOfDoors;
 
         public Car(eColor i__Color, eNumOfDoors i_NumOfDoors, int i_EngineDisplacement, string i_Model, eEngineType i_EngineType, string i_LicensNumber, float i_EnergyPresentage,
-            float i_MaxAirPressure, string i_ManufacturerName) : base(i_Model, i_LicensNumber, i_EnergyPresentage, 2, 30, i_ManufacturerName, i_EngineType)
+            float i_MaxAirPressure, string i_WheelManufacturerName) : base(i_Model, i_LicensNumber, 4, 32, i_WheelManufacturerName, i_EngineType)
         {
             m_Color=i__Color;
             m_NumOfDoors=i_NumOfDoors;
@@ -24,6 +24,7 @@ namespace GarageLogic
             {
                 m_Engine = new FuelEngine(60f, eFuelType.Octan96);
             }
+            m_EnergyPresentage = (m_Engine.MaxEnergyCapacity / m_Engine.CurrentEnergyCapacity) * 100;
         }
 
         public eColor Color 
@@ -51,4 +52,4 @@ namespace GarageLogic
 
     }
 }
-}
+
