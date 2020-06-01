@@ -13,11 +13,9 @@ namespace GarageLogic
         protected float m_EnergyPresentage;
         protected List<Wheel> m_Wheels;
         protected Engine m_Engine;
-        //protected int m_NumberOfWheels;
-        //protected eVehicleType m_eType;
 
         public Vehicle(string i_Model, string i_LicensNumber, int i_NumOfWheels, float i_MaxAirPressure, 
-            string i_WheelManufacturerName, eEngineType EngineType)
+            string i_WheelManufacturerName)
         {
             r_Model = i_Model;
             r_LicensNumber = i_LicensNumber;

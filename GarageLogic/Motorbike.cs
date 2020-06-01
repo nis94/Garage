@@ -9,7 +9,7 @@ namespace GarageLogic
         private int m_EngineDisplacement;
 
         public Motorbike(eLicenseType i_LicenseType, int i_EngineDisplacement, string i_Model, eEngineType i_EngineType,
-            string i_LicensNumber, string i_WheelManufacturerName) : base(i_Model, i_LicensNumber, 2, 30, i_WheelManufacturerName, i_EngineType)
+            string i_LicensNumber, string i_WheelManufacturerName) : base(i_Model, i_LicensNumber, 2, 30, i_WheelManufacturerName)
         {
             m_LicenseType = i_LicenseType;
             m_EngineDisplacement = i_EngineDisplacement;
@@ -22,7 +22,7 @@ namespace GarageLogic
             {
                 m_Engine = new FuelEngine(7f, eFuelType.Octan95);
             }
-            m_EnergyPresentage = (m_Engine.MaxEnergyCapacity / m_Engine.CurrentEnergyCapacity) * 100;
+            m_EnergyPresentage = (m_Engine.CurrentEnergyCapacity / m_Engine.MaxEnergyCapacity) * 100;
         }
 
         public eLicenseType LicenseType
