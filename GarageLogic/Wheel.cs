@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GarageLogic
+namespace Ex03.GarageLogic
 {
     public class Wheel
     {

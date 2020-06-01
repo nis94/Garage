@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GarageLogic
+namespace Ex03.GarageLogic
 {
     internal class Truck : Vehicle
     {
         bool m_IsCarryingHazardousMaterials;
         float m_ChargeDisplacement;
 
-        public Truck(bool i_IsCarryingHazardousMaterials, float i_ChargeDisplacement, string i_Model, string i_LicensNumber,
-             string i_WheelManufacturerName, float i_CurrentEnergyCapacity) : base(i_Model, i_LicensNumber, 16, 28, i_WheelManufacturerName)
+        public Truck(bool i_IsCarryingHazardousMaterials, float i_ChargeDisplacement, string i_Model, string i_PlateNumber,
+             string i_WheelManufacturerName, float i_CurrentEnergyCapacity, eVehicleType i_VehicleType)
+            : base(i_Model, i_PlateNumber, 16, 28, i_WheelManufacturerName, i_VehicleType)
         {
             m_IsCarryingHazardousMaterials = i_IsCarryingHazardousMaterials;
             m_ChargeDisplacement = i_ChargeDisplacement;

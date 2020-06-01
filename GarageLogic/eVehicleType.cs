@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    enum eColor
+    enum eVehicleType
     {
-        red,
-        white,
-        black,
-        silver   
+        FuelCar,
+        ElectricCar,
+        FuelMotorbike,
+        ElectricMotorbike,
+        Truck
     }
 }

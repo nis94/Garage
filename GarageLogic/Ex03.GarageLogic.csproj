@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0F00AD42-62F9-4D39-9723-B76DBCB8766E}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>GarageLogic</RootNamespace>
     <AssemblyName>GarageLogic</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
@@ -45,12 +48,16 @@
     <Compile Include="Engine.cs" />
     <Compile Include="eNumOfDoors.cs" />
     <Compile Include="eLicenseType.cs" />
+    <Compile Include="eVehicleStatus.cs" />
+    <Compile Include="eVehicleType.cs" />
     <Compile Include="FuelEngine.cs" />
     <Compile Include="GarageManager.cs" />
     <Compile Include="Motorbike.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Truck.cs" />
+    <Compile Include="GarageVehicleInfo.cs" />
     <Compile Include="Vehicle.cs" />
+    <Compile Include="VehicleCreator.cs" />
     <Compile Include="Wheel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

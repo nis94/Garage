@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GarageLogic
+namespace Ex03.GarageLogic
 {
     class Car : Vehicle
     {
         eColor m_Color;
         eNumOfDoors m_NumOfDoors;
 
-        public Car(eColor i__Color, eNumOfDoors i_NumOfDoors, string i_Model, eEngineType i_EngineType, string i_LicensNumber,
-             string i_WheelManufacturerName, float i_CurrentEnergyCapacity) : base(i_Model, i_LicensNumber, 4, 32, i_WheelManufacturerName)
+        public Car(eColor i__Color, eNumOfDoors i_NumOfDoors, string i_Model, eEngineType i_EngineType, string i_PlateNumber,
+             string i_WheelManufacturerName, float i_CurrentEnergyCapacity, eVehicleType i_VehicleType)
+            : base(i_Model, i_PlateNumber, 4, 32, i_WheelManufacturerName, i_VehicleType)
         {
             m_Color=i__Color;
             m_NumOfDoors=i_NumOfDoors;
