@@ -10,12 +10,10 @@ namespace Ex03.GarageLogic
     {
         public static void Main()
         {
-            Motorbike Nir = new Motorbike(eLicenseType.A, 250, "JoyMax", eEngineType.Fuel, "A-054-89-165", "Ogja", 4f); // test
-            Motorbike Liran = new Motorbike(eLicenseType.B, 500, "SunYoung", eEngineType.Electric, "B-352-64-433", "Branch", 0.5f); // test
-            Car Leti = new Car(eColor.white, eNumOfDoors.four, "Ibiza", eEngineType.Fuel, "C-878-77-488", "Flot", 55f);
-            Car Aya = new Car(eColor.red, eNumOfDoors.tow, "MiniCoper", eEngineType.Electric, "D-634-25-235", "Spla", 0.2f);
-            Truck truck = new Truck(false, 200f, "TATA", "E-32-333-23", "Loopa", 100f);
-                
+            Motorbike NirMB = VehicleCreator.CreateNewVehicle(eVehicleType.FuelMotorbike, "205489651") as Motorbike;
+            Console.WriteLine(NirMB.MoreInfoMessage());
+            string[] str_arr = { "JoyMax", "5.4", "2", "250", "23.4", "Mischlen" };
+            NirMB.AddInfo(str_arr);
 
             Console.ReadLine();
         }

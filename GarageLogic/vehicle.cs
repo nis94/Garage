@@ -8,21 +8,19 @@ namespace Ex03.GarageLogic
 {
     internal abstract class Vehicle
     {
-        protected readonly string r_Model;
-        protected readonly string m_PlateNumber;
+        protected readonly string m_PlateNumber; // V
+        protected readonly eVehicleType r_VehicleType;// V
+        protected string m_ModelName;
         protected float m_EnergyPresentage;
-        protected List<Wheel> m_Wheels;
-        protected Engine m_Engine;
-        protected readonly eVehicleType r_VehicleType;
+        protected List<Wheel> m_Wheels;// V
+        protected Engine m_Engine; //V
 
-        public Vehicle(string i_Model, string i_PlateNumber, int i_NumOfWheels, float i_MaxAirPressure, 
-            string i_WheelManufacturerName, eVehicleType i_VehicleType)
+        public Vehicle(int i_NumOfWheels, float i_MaxAirPressure, eVehicleType i_VehicleType, string i_PlateNumber)
         {
-            r_Model = i_Model;
             m_PlateNumber = i_PlateNumber;
             m_Wheels = new List<Wheel>();
             r_VehicleType = i_VehicleType;
-            Wheel wheel = new Wheel(i_MaxAirPressure, i_WheelManufacturerName);
+            Wheel wheel = new Wheel(i_MaxAirPressure);
 
             for (int i = 0; i < i_NumOfWheels; i++)
             {
@@ -30,11 +28,16 @@ namespace Ex03.GarageLogic
             }
         }
 
+        public abstract string MoreInfoMessage(); 
+
+        public abstract void AddInfo(string[] i_ExtraInfo);
+        
+
         public string Model
         {
             get
             {
-                return r_Model;
+                return m_ModelName;
             }
         }
 

@@ -4,14 +4,13 @@ namespace Ex03.GarageLogic
 {
     public class Wheel
     {
-        private readonly string r_ManufacturerName;
+        private string m_ManufacturerName;
         private float m_CurrentAirPressure;
         private readonly float r_MaxAirPressure; 
 
-        public Wheel (float i_MaxAirPressure, string i_ManufacturerName)
+        public Wheel (float i_MaxAirPressure)
         {
             r_MaxAirPressure = i_MaxAirPressure;
-            r_ManufacturerName = i_ManufacturerName;
         }
 
         public void InflateWheel (float i_AmountOfAirToAdd)
@@ -30,18 +29,34 @@ namespace Ex03.GarageLogic
 
         public string ManufacturerName
         {
-            get { return r_ManufacturerName; }
+            get 
+            {
+                return m_ManufacturerName;
+            }
+            set 
+            { 
+                m_ManufacturerName = value; 
+            }
         }
 
         public float CurrentAirPresuure
         {
-            get { return m_CurrentAirPressure; }
-            set { m_CurrentAirPressure = value; }
+            get
+            { 
+                return m_CurrentAirPressure;
+            }
+            set
+            {
+                m_CurrentAirPressure = value;
+            }
         }
 
         public float MaxAirPressure
         {
-            get { return r_MaxAirPressure; }
+            get
+            { 
+                return r_MaxAirPressure; 
+            }
         }
     }
 }

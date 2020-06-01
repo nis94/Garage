@@ -8,9 +8,9 @@ namespace Ex03.GarageLogic
 {
     enum eColor
     {
-        red,
-        white,
-        black,
-        silver   
+        Red=1,
+        White,
+        Black,
+        Silver   
     }
 }

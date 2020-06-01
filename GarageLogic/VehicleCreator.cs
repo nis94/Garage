@@ -12,7 +12,7 @@ namespace Ex03.GarageLogic
         {
             Vehicle o_NewVehicle = null;
 
-            switch(i_VehicleType)
+            switch (i_VehicleType)
             {
                 case eVehicleType.FuelCar:
                     o_NewVehicle = new Car(eVehicleType.FuelCar, i_plateNumber);
@@ -31,35 +31,11 @@ namespace Ex03.GarageLogic
                     break;
                 default:
                     break;
-
-            }
-
-
-
-
-            if (i_VehicleType == (int)eVehicleType)
-            {
-                o_NewVehicle = new Car(eVehicleType.Car, i_plateNumber);
-            }
-            else if (i_VehicleType == (int)eVehicleType.ElectricCar)
-            {
-                o_NewVehicle = new Car(eVehicleType.ElectricCar, i_plateNumber);
-            }
-            else if (i_VehicleType == (int)eVehicleType.MotorBike)
-            {
-                o_NewVehicle = new MotorBike(eVehicleType.MotorBike, i_plateNumber);
-            }
-            else if (i_VehicleType == (int)eVehicleType.ElectricMotorBike)
-            {
-                o_NewVehicle = new MotorBike(eVehicleType.ElectricMotorBike, i_plateNumber);
-            }
-            else if (i_VehicleType == (int)eVehicleType.Truck)
-            {
-                o_NewVehicle = new Truck(i_plateNumber);
             }
 
             return o_NewVehicle;
         }
     }
 }
+
 
