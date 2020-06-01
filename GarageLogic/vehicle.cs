@@ -30,28 +30,6 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public string VehicleDetails()
-        {
-            StringBuilder io_VehicleData = new StringBuilder();
-            string i_Data = string.Format(@"Plate Number : {0}
-Vehicle Model: {1}
-Energy Presentage: {2}
-Wheels Manufacturer Name: {3}
-Current Wheel air pressure: {4}
-Engine Type: {5}", m_PlateNumber, m_ModelName, m_RemainingEnergyPrecent, m_Wheels[0].ManufacturerName, m_Wheels[0].CurrentAirPressure, m_Engine.Type);
-
-            io_VehicleData.Append(i_Data);
-
-            FuleEngine FuelToCompare = Engine as FuleEngine;
-            if (FuelToCompare != null)
-            {
-                eFuelType i_FuelType = FuelToCompare.eFuelType;
-                io_VehicleData.Append(Environment.NewLine + "Fuel Type: " + i_FuelType);
-            }
-
-            return io_VehicleData.ToString();
-        }
-
         public string Model
         {
             get

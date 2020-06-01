@@ -27,7 +27,7 @@ namespace Ex03.GarageLogic
                     o_NewVehicle = new Motorbike(eVehicleType.ElectricMotorbike, i_plateNumber);
                     break;
                 case eVehicleType.Truck:
-                    o_NewVehicle = new Truck(i_plateNumber);
+                    o_NewVehicle = new Truck(eVehicleType.Truck, i_plateNumber);
                     break;
                 default:
                     break;
