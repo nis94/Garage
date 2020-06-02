@@ -11,9 +11,10 @@ namespace Ex03.GarageLogic
         public static void Main()
         {
             Motorbike NirMB = VehicleCreator.CreateNewVehicle(eVehicleType.FuelMotorbike, "205489651") as Motorbike;
-            Console.WriteLine(NirMB.MoreInfoMessage());
-            string[] str_arr = { "JoyMax", "5.4", "2", "250", "23.4", "Mischlen" };
+            Console.WriteLine(Motorbike.MoreInfoMessage());
+            string[] str_arr = { "JoyMax", "5.4", "23.4", "Mischlen", "2", "250" };
             NirMB.AddInfo(str_arr);
+            Console.WriteLine(NirMB.ToString());
 
             Console.ReadLine();
         }

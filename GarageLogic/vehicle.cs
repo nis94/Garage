@@ -8,12 +8,12 @@ namespace Ex03.GarageLogic
 {
     internal abstract class Vehicle
     {
-        protected readonly string m_PlateNumber; // V
-        protected readonly eVehicleType r_VehicleType;// V
+        protected readonly string m_PlateNumber; 
+        protected readonly eVehicleType r_VehicleType;
         protected string m_ModelName;
         protected float m_EnergyPresentage;
-        protected List<Wheel> m_Wheels;// V
-        protected Engine m_Engine; //V
+        protected List<Wheel> m_Wheels;
+        protected Engine m_Engine; 
 
         public Vehicle(int i_NumOfWheels, float i_MaxAirPressure, eVehicleType i_VehicleType, string i_PlateNumber)
         {
@@ -28,10 +28,42 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public abstract string MoreInfoMessage(); 
+        public static string MoreInfoMessage()
+        {
 
-        public abstract void AddInfo(string[] i_ExtraInfo);
-        
+            string AskForInfoMsg = string.Format(@"Please enter the following information, (after every detail press ENTER):
+                1) Model name
+                2) Current Energy 
+                3) Current Air Pressure(0-32)
+                4) Wheels Manufacturer Name");
+
+            return AskForInfoMsg;
+        }
+
+        public void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
+        {
+            m_ModelName = i_ExtraInfo[0];
+            m_Engine.CurrentEnergyCapacity = float.Parse(i_ExtraInfo[1]);
+            m_EnergyPresentage = (m_Engine.CurrentEnergyCapacity / m_Engine.MaxEnergyCapacity) * 100;
+            foreach (Wheel wheel in m_Wheels)
+            {
+                wheel.CurrentAirPresuure = float.Parse(i_ExtraInfo[2]);
+                wheel.ManufacturerName = i_ExtraInfo[3];
+            }
+        }
+
+        public override string ToString()
+        {
+            string InfoMsg = string.Format(@"
+                1) Model name: {0}
+                2) Current Energy: {1} 
+                3) Current Air Pressure: {2}
+                4) Wheels Manufacturer Name: {3}",
+                m_ModelName, m_EnergyPresentage, m_Wheels[0].CurrentAirPresuure, m_Wheels[0].ManufacturerName);
+
+            return InfoMsg;
+        }
+
 
         public string Model
         {

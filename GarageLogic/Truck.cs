@@ -16,31 +16,33 @@ namespace Ex03.GarageLogic
             m_Engine = new FuelEngine(120f, eFuelType.Soler);
         }
 
-        public override string MoreInfoMessage()
+        public static new string MoreInfoMessage()
         {
-            string Message = string.Format(@"Please enter the following information, (after every detail press ENTER):
-                1) Model name
-                2) Current Energy Capacity
-                3) Is Carrying Hazardous Materials? (1-Yes, 2-No)
-                4) ChargeDisplacement 
-                5) Current Air Pressure(0-32)
-                6) Wheels Manufacturer Name");
+            string AskForInfoMsg = string.Format(
+                @"{0}
+                5) Is Carrying Hazardous Materials? (1 = Yes, 2 = No)
+                6) ChargeDisplacement",
+                Vehicle.MoreInfoMessage());
 
-            return Message;
+            return AskForInfoMsg;
         }
 
-        public override void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
+        public new void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
         {
-            m_ModelName = i_ExtraInfo[0];
-            m_Engine.CurrentEnergyCapacity = float.Parse(i_ExtraInfo[1]);
-            m_EnergyPresentage = (m_Engine.CurrentEnergyCapacity / m_Engine.MaxEnergyCapacity) * 100;
-            m_IsCarryingHazardousMaterials = bool.Parse(i_ExtraInfo[2]);
-            m_ChargeDisplacement = float.Parse(i_ExtraInfo[3]);
-            foreach (Wheel wheel in m_Wheels)
-            {
-                wheel.CurrentAirPresuure = float.Parse(i_ExtraInfo[4]);
-                wheel.ManufacturerName = i_ExtraInfo[5];
-            }
+            (this as Vehicle).AddInfo(i_ExtraInfo);
+            m_IsCarryingHazardousMaterials = bool.Parse(i_ExtraInfo[4]);
+            m_ChargeDisplacement = float.Parse(i_ExtraInfo[5]);
+        }
+
+        public new string ToString()
+        {
+            string InfoMsg = string.Format(@"
+                {0}
+                5) Is Carrying Hazardous Materials?: {1}
+                6) Charge Displacement Size: {2}",
+                (this as Vehicle).ToString(), m_IsCarryingHazardousMaterials, m_ChargeDisplacement);
+
+            return InfoMsg;
         }
 
         public bool IsCarryingHazardousMaterials
