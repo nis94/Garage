@@ -28,9 +28,8 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public static string MoreInfoMessage()
+        protected static string MoreInfoMessage()
         {
-
             string AskForInfoMsg = string.Format(@"Please enter the following information, (after every detail press ENTER):
                 1) Model name
                 2) Current Energy 
@@ -40,7 +39,7 @@ namespace Ex03.GarageLogic
             return AskForInfoMsg;
         }
 
-        public void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
+        protected virtual void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
         {
             m_ModelName = i_ExtraInfo[0];
             m_Engine.CurrentEnergyCapacity = float.Parse(i_ExtraInfo[1]);
@@ -52,7 +51,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public override string ToString()
+        protected virtual string PrintData()
         {
             string InfoMsg = string.Format(@"
                 1) Model name: {0}

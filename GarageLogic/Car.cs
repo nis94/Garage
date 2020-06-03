@@ -36,18 +36,18 @@ namespace Ex03.GarageLogic
       
         public new void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
         {
-            (this as Vehicle).AddInfo(i_ExtraInfo);
+            base.AddInfo(i_ExtraInfo);
             m_Color = (eColor)int.Parse(i_ExtraInfo[4]);
             m_NumOfDoors = (eNumOfDoors)int.Parse(i_ExtraInfo[5]);
         }
 
-        public new string ToString()
+        public new string PrintData()
         { 
             string InfoMsg = string.Format(@"
                 {0}
                 5) Color: {1}
                 6) Number Of Doors: {2}",
-                (this as Vehicle).ToString(), m_Color, m_NumOfDoors);
+                base.PrintData(), m_Color, m_NumOfDoors);
 
             return InfoMsg;
         }

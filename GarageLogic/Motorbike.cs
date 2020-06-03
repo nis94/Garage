@@ -34,18 +34,18 @@ namespace Ex03.GarageLogic
 
         public new void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
         {
-            (this as Vehicle).AddInfo(i_ExtraInfo);
+            base.AddInfo(i_ExtraInfo);
             m_LicenseType = (eLicenseType)int.Parse(i_ExtraInfo[4]);
             m_EngineDisplacement = int.Parse(i_ExtraInfo[5]);
         }
 
-        public new string ToString()
+        public new string PrintData()
         {
             string InfoMsg = string.Format(@"
                 {0}
                 5) License Type: {1}
                 6) Engine Displacement Size: {2}",
-                (this as Vehicle).ToString(), m_LicenseType, m_EngineDisplacement);
+                base.PrintData(), m_LicenseType, m_EngineDisplacement);
 
             return InfoMsg;
         }
