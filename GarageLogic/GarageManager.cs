@@ -64,6 +64,15 @@ namespace Ex03.GarageLogic
             return ListOfPlateNumbers.ToString();
         }
 
+        public void ChangeVehicleStatus(string i_PlateNumber, eVehicleStatus i_VehicleStatus)
+        {
+            foreach (var item in m_VehiclesStorage)
+            {
+                ListOfPlateNumbers.Append();
+            }
+        }
+    }
+
 
 
 
