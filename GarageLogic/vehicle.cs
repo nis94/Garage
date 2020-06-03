@@ -39,7 +39,7 @@ namespace Ex03.GarageLogic
             return AskForInfoMsg;
         }
 
-        protected virtual void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
+        protected void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
         {
             m_ModelName = i_ExtraInfo[0];
             m_Engine.CurrentEnergyCapacity = float.Parse(i_ExtraInfo[1]);
@@ -51,7 +51,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        protected virtual string PrintData()
+        protected string PrintData()
         {
             string InfoMsg = string.Format(@"
                 1) Model name: {0}

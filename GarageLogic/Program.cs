@@ -14,7 +14,7 @@ namespace Ex03.GarageLogic
             Console.WriteLine(Motorbike.MoreInfoMessage());
             string[] str_arr = { "JoyMax", "5.4", "23.4", "Mischlen", "2", "250" };
             NirMB.AddInfo(str_arr);
-            Console.WriteLine(NirMB.ToString());
+            Console.WriteLine(NirMB.PrintData());
 
             Console.ReadLine();
         }

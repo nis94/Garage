@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    enum eVehicleType
+    public enum eVehicleType
     {
         FuelCar,
         ElectricCar,

@@ -13,11 +13,12 @@ namespace Ex03.GarageLogic
         private eVehicleStatus m_VehicleStatus;
         private Vehicle m_Vehicle;
 
-        public GarageVehicleInfo(string i_OwnerName, string i_OwnerPhone)
+        public GarageVehicleInfo(string i_OwnerName, string i_OwnerPhone, Vehicle i_Vehicle)
         {
             m_OwnerName = i_OwnerName;
             m_OwnerPhoneNumber = i_OwnerPhone;
             m_VehicleStatus = eVehicleStatus.InProgress;
+            m_Vehicle = i_Vehicle;  // ??? DeepClone ???
         }
 
         public eVehicleStatus Status
