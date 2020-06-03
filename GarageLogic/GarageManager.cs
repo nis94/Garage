@@ -28,7 +28,7 @@ namespace Ex03.GarageLogic
 
         public string ShowAllPlateNumbers(bool i_IsFilteredByStatus)
         {
-            StringBuilder o_ListOfPlateNumbers = new StringBuilder(string.Empty);
+            StringBuilder ListOfPlateNumbers = new StringBuilder(string.Empty);
             StringBuilder ListOfInProgress = new StringBuilder(string.Empty);
             StringBuilder ListOfFixed = new StringBuilder(string.Empty);
             StringBuilder ListOfPaid = new StringBuilder(string.Empty);
@@ -41,16 +41,36 @@ namespace Ex03.GarageLogic
                     {
                         ListOfInProgress.Append(item.Key);
                     }
-                    else if () // IM HERE (NIR)
+                    else if (item.Value.Status == eVehicleStatus.Fixed)
                     {
-
+                        ListOfFixed.Append(item.Key);
                     }
                     else
                     {
-
+                        ListOfPaid.Append(item.Key);
                     }
                 }
+
+                ListOfPlateNumbers.Append(ListOfInProgress.Append(ListOfFixed).Append(ListOfPaid));
             }
+            else 
+            {
+                foreach (var item in m_VehiclesStorage)
+                {
+                 ListOfPlateNumbers.Append(item.Key); 
+                }
+            }
+
+            return ListOfPlateNumbers.ToString();
         }
+
+
+
+
+
+
+
+
+
     }
 }
