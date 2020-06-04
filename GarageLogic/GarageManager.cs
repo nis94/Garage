@@ -135,7 +135,14 @@ namespace Ex03.GarageLogic
             //else exception of vehicle not exist in system
         }
 
-        public void CreateVehicleDetails (string i_PlateNumber)
+        public string GetVehicleDetails (string i_PlateNumber)
+        {
+           string DetailsMsg = CreateVehicleDetails(i_PlateNumber);
+           return DetailsMsg; 
+        
+        }
+
+        public string CreateVehicleDetails (string i_PlateNumber)
         {
             if (m_VehiclesStorage.ContainsKey(i_PlateNumber) == true)
             {

@@ -100,15 +100,23 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public Wheel this[int i]
+        //public Wheel this[int i]
+        //{
+        //    get
+        //    {
+        //        return m_Wheels[i];
+        //    }
+        //    set
+        //    {
+        //        m_Wheels[i] = value;
+        //    }
+        //}
+
+        public List<Wheel> Wheels
         {
             get
             {
-                return m_Wheels[i];
-            }
-            set
-            {
-                m_Wheels[i] = value;
+                return m_Wheels; 
             }
         }
     }
