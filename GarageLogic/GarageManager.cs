@@ -26,12 +26,9 @@ namespace Ex03.GarageLogic
             GarageVehicleInfo NewVehicleData = new GarageVehicleInfo(i_OwnerName, i_OwnerPhone, i_NewVehicle);
         }
 
-        public string ShowAllPlateNumbers(bool i_IsFilteredByStatus)
+        public List<string> ShowAllPlateNumbers(bool i_IsFilteredByStatus)
         {
-            StringBuilder ListOfPlateNumbers = new StringBuilder(string.Empty);
-            StringBuilder ListOfInProgress = new StringBuilder(string.Empty);
-            StringBuilder ListOfFixed = new StringBuilder(string.Empty);
-            StringBuilder ListOfPaid = new StringBuilder(string.Empty);
+            List<string> o_ListOfPlateNumbers = new List<string>();
 
             if (i_IsFilteredByStatus==true)
             {
@@ -51,17 +48,17 @@ namespace Ex03.GarageLogic
                     }
                 }
 
-                ListOfPlateNumbers.Append(ListOfInProgress.Append(ListOfFixed).Append(ListOfPaid));
+                o_ListOfPlateNumbers.Append(ListOfInProgress.Append(ListOfFixed).Append(ListOfPaid));
             }
             else 
             {
                 foreach (var item in m_VehiclesStorage)
                 {
-                 ListOfPlateNumbers.Append(item.Key); 
+                 o_ListOfPlateNumbers.Append(item.Key); 
                 }
             }
 
-            return ListOfPlateNumbers.ToString();
+            return o_ListOfPlateNumbers;
         }
 
         public void ChangeVehicleStatus(string i_PlateNumber, eVehicleStatus i_VehicleStatus)
