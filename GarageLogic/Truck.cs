@@ -20,27 +20,27 @@ namespace Ex03.GarageLogic
         {
             string AskForInfoMsg = string.Format(
                 @"{0}
-                5) Is Carrying Hazardous Materials? (1 = Yes, 2 = No)
-                6) ChargeDisplacement",
+                 Is Carrying Hazardous Materials? (1 = Yes, 2 = No)
+                 ChargeDisplacement",
                 Vehicle.MoreInfoMessage());
 
             return AskForInfoMsg;
         }
 
-        public new void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
+        public override void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
         {
             base.AddInfo(i_ExtraInfo);
             m_IsCarryingHazardousMaterials = bool.Parse(i_ExtraInfo[4]);
             m_ChargeDisplacement = float.Parse(i_ExtraInfo[5]);
         }
 
-        public new string PrintData()
+        public override string CreateDetails()
         {
             string InfoMsg = string.Format(@"
                 {0}
-                5) Is Carrying Hazardous Materials?: {1}
-                6) Charge Displacement Size: {2}",
-                base.PrintData(), m_IsCarryingHazardousMaterials, m_ChargeDisplacement);
+                 Is Carrying Hazardous Materials?: {1}
+                 Charge Displacement Size: {2}",
+                base.CreateDetails(), m_IsCarryingHazardousMaterials, m_ChargeDisplacement);
 
             return InfoMsg;
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    internal abstract class Vehicle
+    public abstract class Vehicle
     {
         protected readonly string m_PlateNumber; 
         protected readonly eVehicleType r_VehicleType;
@@ -20,10 +20,10 @@ namespace Ex03.GarageLogic
             m_PlateNumber = i_PlateNumber;
             m_Wheels = new List<Wheel>();
             r_VehicleType = i_VehicleType;
-            Wheel wheel = new Wheel(i_MaxAirPressure);
 
             for (int i = 0; i < i_NumOfWheels; i++)
             {
+                Wheel wheel = new Wheel(i_MaxAirPressure);
                 m_Wheels.Add(wheel);
             }
         }
@@ -39,7 +39,7 @@ namespace Ex03.GarageLogic
             return AskForInfoMsg;
         }
 
-        protected void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
+        public virtual void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
         {
             m_ModelName = i_ExtraInfo[0];
             m_Engine.CurrentEnergyCapacity = float.Parse(i_ExtraInfo[1]);
@@ -51,13 +51,13 @@ namespace Ex03.GarageLogic
             }
         }
 
-        protected string PrintData()
+        public virtual string CreateDetails()
         {
             string InfoMsg = string.Format(@"
-                1) Model name: {0}
-                2) Current Energy: {1} 
-                3) Current Air Pressure: {2}
-                4) Wheels Manufacturer Name: {3}",
+                 Model name: {0}
+                 Current Energy: {1} 
+                 Current Air Pressure: {2}
+                 Wheels Manufacturer Name: {3}",
                 m_ModelName, m_EnergyPresentage, m_Wheels[0].CurrentAirPresuure, m_Wheels[0].ManufacturerName);
 
             return InfoMsg;
@@ -97,18 +97,6 @@ namespace Ex03.GarageLogic
             get
             {
                 return m_Engine;
-            }
-        }
-
-        public Wheel this[int i]
-        {
-            get
-            {
-                return m_Wheels[i];
-            }
-            set
-            {
-                m_Wheels[i] = value;
             }
         }
 

@@ -27,27 +27,27 @@ namespace Ex03.GarageLogic
         {
             string AskForInfoMsg = string.Format(
                 @"{0}
-                5) Color: (1 = Red, 2 = White, 3 = Black, 4 = Silver)
-                6) Number Of Doors(2 - 5)",
+                 Color: (1 = Red, 2 = White, 3 = Black, 4 = Silver)
+                 Number Of Doors(2 - 5)",
                 Vehicle.MoreInfoMessage());
 
             return AskForInfoMsg;
         }
       
-        public new void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
+        public override void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
         {
             base.AddInfo(i_ExtraInfo);
             m_Color = (eColor)int.Parse(i_ExtraInfo[4]);
             m_NumOfDoors = (eNumOfDoors)int.Parse(i_ExtraInfo[5]);
         }
 
-        public new string PrintData()
+        public override string CreateDetails()
         { 
             string InfoMsg = string.Format(@"
                 {0}
-                5) Color: {1}
-                6) Number Of Doors: {2}",
-                base.PrintData(), m_Color, m_NumOfDoors);
+                 Color: {1}
+                 Number Of Doors: {2}",
+                base.CreateDetails(), m_Color, m_NumOfDoors);
 
             return InfoMsg;
         }

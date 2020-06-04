@@ -25,27 +25,27 @@ namespace Ex03.GarageLogic
         {
             string AskForInfoMsg = string.Format(
                @"{0}
-                5) License Type: (1 = A, 2 = A1, 3 = AA, 4 = B)
-                6) EngineDisplacement", 
+                 License Type: (1 = A, 2 = A1, 3 = AA, 4 = B)
+                 EngineDisplacement", 
                Vehicle.MoreInfoMessage());
 
             return AskForInfoMsg;
         }
 
-        public new void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
+        public override void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
         {
             base.AddInfo(i_ExtraInfo);
             m_LicenseType = (eLicenseType)int.Parse(i_ExtraInfo[4]);
             m_EngineDisplacement = int.Parse(i_ExtraInfo[5]);
         }
 
-        public new string PrintData()
+        public override string CreateDetails()
         {
             string InfoMsg = string.Format(@"
                 {0}
-                5) License Type: {1}
-                6) Engine Displacement Size: {2}",
-                base.PrintData(), m_LicenseType, m_EngineDisplacement);
+                 License Type: {1}
+                 Engine Displacement Size: {2}",
+                base.CreateDetails(), m_LicenseType, m_EngineDisplacement);
 
             return InfoMsg;
         }

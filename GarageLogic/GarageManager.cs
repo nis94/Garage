@@ -26,13 +26,20 @@ namespace Ex03.GarageLogic
             if (isExist == false)
             {
                 Vehicle i_NewVehicle = VehicleCreator.CreateNewVehicle(i_VehicleType, i_plateNumber);
+
+                // BUG!!! We need to create here the vehicle, not in the menu
+
+                //i_NewVehicle.AddInfo(UI.GenarateInfo()); // method that returns string arr with all the details
+                //  OR
+                //This should happaned in the UI. (!!! make sence if we'll creat there an object !!!)
+
                 GarageVehicleInfo NewVehicleData = new GarageVehicleInfo(i_OwnerName, i_OwnerPhone, i_NewVehicle);
                 m_VehiclesStorage.Add(i_plateNumber, NewVehicleData);
             }
         }
 
         public List<string> ShowAllPlateNumbers()
-        { 
+        {
             List<string> PlateNumbersList = new List<string>();
 
             foreach (string key in m_VehiclesStorage.Keys)
@@ -49,7 +56,7 @@ namespace Ex03.GarageLogic
 
             foreach (string key in m_VehiclesStorage.Keys)
             {
-                if (m_VehiclesStorage[key].Status == i_VehicleStatus) 
+                if (m_VehiclesStorage[key].Status == i_VehicleStatus)
                 {
                     PlateNumbersList.Add(key);
                 }
@@ -70,14 +77,14 @@ namespace Ex03.GarageLogic
                 throw new ArgumentException("Vehicle does not exist in the garage!");
             }
         }
-        
+
         public void InflateWheels(string i_PlateNumber)
         {
             if (m_VehiclesStorage.ContainsKey(i_PlateNumber) == true)
             {
                 float max = m_VehiclesStorage[i_PlateNumber].Vehicle.Wheels[0].MaxAirPressure;
 
-                foreach (Wheel wheel in m_VehiclesStorage[i_PlateNumber].Vehicle.Wheels) //run on all the wheels of the viechle
+                foreach (Wheel wheel in m_VehiclesStorage[i_PlateNumber].Vehicle.Wheels) //run on all the wheels of the vehicle
                 {
                     wheel.CurrentAirPresuure = max;
                 }
@@ -90,6 +97,8 @@ namespace Ex03.GarageLogic
 
         public void Fuel(string i_PlateNumber, eFuelType i_FuelType, float i_FuelAmount)
         {
+            const float k_FloatEpsilon = 000001f;
+
             if (m_VehiclesStorage.ContainsKey(i_PlateNumber) == true)
             {
                 Vehicle currentVehicle = m_VehiclesStorage[i_PlateNumber].Vehicle;
@@ -99,7 +108,7 @@ namespace Ex03.GarageLogic
                     FuelEngine currentEngine = currentVehicle.Engine as FuelEngine;
                     if (currentEngine.FuelType == i_FuelType)
                     {
-                        if (currentEngine.CurrentEnergyCapacity + i_FuelAmount <= currentEngine.MaxEnergyCapacity)
+                        if (currentEngine.MaxEnergyCapacity + k_FloatEpsilon >= currentEngine.CurrentEnergyCapacity + i_FuelAmount)  //BUG!!!!! 7<=7 go to else part
                         {
                             currentEngine.ReFuel(i_FuelAmount);
                             currentVehicle.EnergyPresentage = (currentEngine.CurrentEnergyCapacity / currentEngine.MaxEnergyCapacity) * 100;
@@ -127,13 +136,15 @@ namespace Ex03.GarageLogic
 
         public void Charge(string i_PlateNumber, float i_MinutesAmount)
         {
+            const float k_FloatEpsilon = 000001f;
+
             if (m_VehiclesStorage.ContainsKey(i_PlateNumber) == true)
             {
                 Vehicle currentVehicle = m_VehiclesStorage[i_PlateNumber].Vehicle;
                 if (currentVehicle.Engine.Type == eEngineType.Electric)
                 {
                     ElectricEngine currentEngine = currentVehicle.Engine as ElectricEngine;
-                    if (currentEngine.CurrentEnergyCapacity + i_MinutesAmount <= currentEngine.MaxEnergyCapacity)
+                    if (currentEngine.CurrentEnergyCapacity + i_MinutesAmount <= currentEngine.MaxEnergyCapacity + k_FloatEpsilon) 
                     {
                         currentEngine.ReCharge(i_MinutesAmount);
                         currentVehicle.EnergyPresentage = (currentEngine.CurrentEnergyCapacity / currentEngine.MaxEnergyCapacity) * 100;
@@ -154,25 +165,37 @@ namespace Ex03.GarageLogic
             }
         }
 
+        public string GetVehicleDetails(string i_PlateNumber)
+        {
+            string DetailsMsg = CreateVehicleDetails(i_PlateNumber);
+            return DetailsMsg;
+        }
 
-
-        public void CreateVehicleDetails (string i_PlateNumber)
+        private string CreateVehicleDetails(string i_PlateNumber)
         {
             if (m_VehiclesStorage.ContainsKey(i_PlateNumber) == true)
             {
-                GarageVehicleInfo currentVehicleInfo = m_VehiclesStorage[i_PlateNumber]; 
+                GarageVehicleInfo currentVehicleInfo = m_VehiclesStorage[i_PlateNumber];
+                Vehicle currentvehicle = currentVehicleInfo.Vehicle;
 
                 string Details = string.Format(@"
-            1) Plate number: {0}
-            2) ")
+            Owner Name is: {0}
+            OWner phone number is: {1}
+            Vehicle status is: {2}
+            {3}",
+            currentVehicleInfo.OwnerName, currentVehicleInfo.PhoneNumber, currentVehicleInfo.Status, currentvehicle.CreateDetails());
+
+                return Details;
+            }
+            else
+            {
+                throw new ArgumentException("Vehicle does not exist in the garage!");
+            }
         }
 
-
-
-
-
-
-
-
+        public Dictionary<string, GarageVehicleInfo> VehiclesStorage
+        {
+            get { return m_VehiclesStorage; }
+        }
     }
 }

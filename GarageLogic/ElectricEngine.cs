@@ -10,14 +10,7 @@ namespace Ex03.GarageLogic
         internal void ReCharge(float i_NumberOfHoursToAdd)
         {
             float updatedCurrentCapacity = m_CurrentEnergyCapacity + i_NumberOfHoursToAdd;
-            if (updatedCurrentCapacity > r_MaxEnergyCapacity)
-            {
-                Console.WriteLine("Exceeding maximum battery charge"); //to do exception
-            }
-            else
-            {
-                m_CurrentEnergyCapacity = updatedCurrentCapacity;
-            }
+            m_CurrentEnergyCapacity = updatedCurrentCapacity;
         }
     }
 }

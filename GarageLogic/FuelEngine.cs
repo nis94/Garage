@@ -23,14 +23,7 @@ namespace Ex03.GarageLogic
         internal void ReFuel(float i_NumberOfLittersToAdd)
         {
             float updatedCurrentCapacity = m_CurrentEnergyCapacity + i_NumberOfLittersToAdd;
-            if (updatedCurrentCapacity > r_MaxEnergyCapacity)
-            {
-                Console.WriteLine("Exceeding maximum battery charge"); //to do throw exception
-            }
-            else
-            {
                 m_CurrentEnergyCapacity = updatedCurrentCapacity;
-            }
         }
     }
 }
