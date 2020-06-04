@@ -29,6 +29,7 @@ namespace Ex03.GarageLogic
         public List<string> ShowAllPlateNumbers(bool i_IsFilteredByStatus)
         {
             List<string> o_ListOfPlateNumbers = new List<string>();
+            List<string>  AllPlates m_VehiclesStorage.Keys.ToList<string>;
 
             if (i_IsFilteredByStatus==true)
             {
