@@ -12,57 +12,51 @@ namespace Ex03.GarageLogic
 
         public void InsertVehicle(string i_OwnerName, string i_OwnerPhone, eVehicleType i_VehicleType, string i_plateNumber)
         {
-            foreach (var item in m_VehiclesStorage)
+            bool isExist = false;
+            foreach (string key in m_VehiclesStorage.Keys)
             {
-                if (item.Key == i_plateNumber)
+                if (key == i_plateNumber)
                 {
-                    // print Error message ---> (1)Exception? (2)return value? 
-                    item.Value.Status = eVehicleStatus.InProgress;
+                    // print Error message ---> Exception?  
+                    m_VehiclesStorage[key].Status = eVehicleStatus.InProgress;
                     break;
                 }
             }
 
-            Vehicle i_NewVehicle = VehicleCreator.CreateNewVehicle(i_VehicleType, i_plateNumber);
-            GarageVehicleInfo NewVehicleData = new GarageVehicleInfo(i_OwnerName, i_OwnerPhone, i_NewVehicle); //what to do with it?//
-            //need to add the obj to the dictionary
+            if (isExist == false)
+            {
+                Vehicle i_NewVehicle = VehicleCreator.CreateNewVehicle(i_VehicleType, i_plateNumber);
+                GarageVehicleInfo NewVehicleData = new GarageVehicleInfo(i_OwnerName, i_OwnerPhone, i_NewVehicle);
+                m_VehiclesStorage.Add(i_plateNumber, NewVehicleData);
+            }
         }
 
-        public string ShowAllPlateNumbers(bool i_IsFilteredByStatus) // המתודה גם יוצרת את הרשימה? 
+        public List<string> ShowAllPlateNumbers()
+        { 
+            List<string> PlateNumbersList = new List<string>();
+
+            foreach (string key in m_VehiclesStorage.Keys)
+            {
+                PlateNumbersList.Add(key);
+            }
+
+            return PlateNumbersList;
+        }
+
+        public List<string> ShowFilteredPlateNumbers(eVehicleStatus i_VehicleStatus)
         {
-            StringBuilder ListOfPlateNumbers = new StringBuilder(string.Empty);
-            StringBuilder ListOfInProgress = new StringBuilder(string.Empty);
-            StringBuilder ListOfFixed = new StringBuilder(string.Empty);
-            StringBuilder ListOfPaid = new StringBuilder(string.Empty);
+            List<string> PlateNumbersList = new List<string>();
 
-            if (i_IsFilteredByStatus == true)
+            foreach (string key in m_VehiclesStorage.Keys)
             {
-                foreach (var item in m_VehiclesStorage)
+                if (m_VehiclesStorage[key].Status == i_VehicleStatus) 
                 {
-                    if (item.Value.Status == eVehicleStatus.InProgress)
-                    {
-                        ListOfInProgress.Append(item.Key);
-                    }
-                    else if (item.Value.Status == eVehicleStatus.Fixed)
-                    {
-                        ListOfFixed.Append(item.Key);
-                    }
-                    else
-                    {
-                        ListOfPaid.Append(item.Key);
-                    }
-                }
-
-                ListOfPlateNumbers.Append(ListOfInProgress.Append(ListOfFixed).Append(ListOfPaid)); //מה קורה פה? משרשר את כל הסטרינג בילדרים אחד לשני?
-            }
-            else
-            {
-                foreach (var item in m_VehiclesStorage)
-                {
-                    ListOfPlateNumbers.Append(item.Key);
+                    PlateNumbersList.Add(key);
                 }
             }
 
-            return ListOfPlateNumbers.ToString();
+
+            return PlateNumbersList;
         }
 
         public void ChangeVehicleStatus(string i_PlateNumber, eVehicleStatus i_NewVehicleStatus)
@@ -70,24 +64,28 @@ namespace Ex03.GarageLogic
             if (m_VehiclesStorage.ContainsKey(i_PlateNumber) == true)
             {
                 m_VehiclesStorage[i_PlateNumber].Status = i_NewVehicleStatus;
-
             }
-            //else part-  exception???
-
+            else
+            {
+                throw new ArgumentException("Vehicle does not exist in the garage!");
+            }
         }
-
+        
         public void InflateWheels(string i_PlateNumber)
         {
             if (m_VehiclesStorage.ContainsKey(i_PlateNumber) == true)
             {
                 float max = m_VehiclesStorage[i_PlateNumber].Vehicle.Wheels[0].MaxAirPressure;
 
-                foreach (var item in m_VehiclesStorage[i_PlateNumber].Vehicle.Wheels) //run on all the wheels of the viechle
+                foreach (Wheel wheel in m_VehiclesStorage[i_PlateNumber].Vehicle.Wheels) //run on all the wheels of the viechle
                 {
-                    item.CurrentAirPresuure = max;
+                    wheel.CurrentAirPresuure = max;
                 }
             }
-            //else part- exception
+            else
+            {
+                throw new ArgumentException("Vehicle does not exist in the garage!");
+            }
         }
 
         public void Fuel(string i_PlateNumber, eFuelType i_FuelType, float i_FuelAmount)
@@ -95,6 +93,7 @@ namespace Ex03.GarageLogic
             if (m_VehiclesStorage.ContainsKey(i_PlateNumber) == true)
             {
                 Vehicle currentVehicle = m_VehiclesStorage[i_PlateNumber].Vehicle;
+
                 if (currentVehicle.Engine.Type == eEngineType.Fuel)
                 {
                     FuelEngine currentEngine = currentVehicle.Engine as FuelEngine;
@@ -105,17 +104,28 @@ namespace Ex03.GarageLogic
                             currentEngine.ReFuel(i_FuelAmount);
                             currentVehicle.EnergyPresentage = (currentEngine.CurrentEnergyCapacity / currentEngine.MaxEnergyCapacity) * 100;
                         }
-
-                        //else exception of execeeding the maximum capacity
-                    } 
-                    //else exception of fueltype mismatch
+                        else
+                        {
+                            throw new ValueOutOfRangeException(0, currentEngine.MaxEnergyCapacity - currentEngine.CurrentEnergyCapacity, "Exceeding the maximum tank capacity!");
+                        }
+                    }
+                    else
+                    {
+                        throw new ArgumentException("Fuel type mismatch!");
+                    }
                 }
-                //else exception of engine mismatch
-             }
-            //else exception of vehicle not exist in system
+                else
+                {
+                    throw new ArgumentException("Engine Type mismatch!");
+                }
+            }
+            else
+            {
+                throw new ArgumentException("Vehicle does not exist in the garage!");
+            }
         }
 
-        public void Charge (string i_PlateNumber, float i_MinutesAmount)
+        public void Charge(string i_PlateNumber, float i_MinutesAmount)
         {
             if (m_VehiclesStorage.ContainsKey(i_PlateNumber) == true)
             {
@@ -128,12 +138,23 @@ namespace Ex03.GarageLogic
                         currentEngine.ReCharge(i_MinutesAmount);
                         currentVehicle.EnergyPresentage = (currentEngine.CurrentEnergyCapacity / currentEngine.MaxEnergyCapacity) * 100;
                     }
-                    //else exception of exceeding maximum capacity
+                    else
+                    {
+                        throw new ValueOutOfRangeException(0, currentEngine.MaxEnergyCapacity - currentEngine.CurrentEnergyCapacity, "Exceeding the maximum charge capacity!");
+                    }
                 }
-                //else Exception of engine mismatch
+                else
+                {
+                    throw new ArgumentException("Engine Type mismatch!");
+                }
             }
-            //else exception of vehicle not exist in system
+            else
+            {
+                throw new ArgumentException("Vehicle does not exist in the garage!");
+            }
         }
+
+
 
         public void CreateVehicleDetails (string i_PlateNumber)
         {

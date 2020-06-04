@@ -111,5 +111,13 @@ namespace Ex03.GarageLogic
                 m_Wheels[i] = value;
             }
         }
+
+        public List<Wheel> Wheels
+        {
+            get
+            {
+                return m_Wheels; 
+            }
+        }
     }
 }
