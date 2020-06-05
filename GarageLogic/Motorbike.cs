@@ -24,9 +24,9 @@ namespace Ex03.GarageLogic
         public static new string MoreInfoMessage()
         {
             string AskForInfoMsg = string.Format(
-               @"{0}
-                 License Type: (1 = A, 2 = A1, 3 = AA, 4 = B)
-                 EngineDisplacement", 
+@"{0}
+License Type: (1 = A, 2 = A1, 3 = AA, 4 = B)
+EngineDisplacement",
                Vehicle.MoreInfoMessage());
 
             return AskForInfoMsg;
@@ -41,10 +41,10 @@ namespace Ex03.GarageLogic
 
         public override string CreateDetails()
         {
-            string InfoMsg = string.Format(@"
-                {0}
-                 License Type: {1}
-                 Engine Displacement Size: {2}",
+            string InfoMsg = string.Format(
+@"{0}
+License Type: {1}
+Engine Displacement Size: {2}",
                 base.CreateDetails(), m_LicenseType, m_EngineDisplacement);
 
             return InfoMsg;

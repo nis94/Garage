@@ -26,10 +26,10 @@ namespace Ex03.GarageLogic
         public static new string MoreInfoMessage()
         {
             string AskForInfoMsg = string.Format(
-                @"{0}
-                 Color: (1 = Red, 2 = White, 3 = Black, 4 = Silver)
-                 Number Of Doors(2 - 5)",
-                Vehicle.MoreInfoMessage());
+@"{0}
+Color: (1 = Red, 2 = White, 3 = Black, 4 = Silver)
+Number Of Doors(2 - 5)",
+            Vehicle.MoreInfoMessage());
 
             return AskForInfoMsg;
         }
@@ -43,10 +43,10 @@ namespace Ex03.GarageLogic
 
         public override string CreateDetails()
         { 
-            string InfoMsg = string.Format(@"
-                {0}
-                 Color: {1}
-                 Number Of Doors: {2}",
+            string InfoMsg = string.Format(
+@"{0}
+Color: {1}
+Number Of Doors: {2}",
                 base.CreateDetails(), m_Color, m_NumOfDoors);
 
             return InfoMsg;

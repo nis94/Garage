@@ -95,7 +95,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void Fuel(string i_PlateNumber, eFuelType i_FuelType, float i_FuelAmount)
+        public void ReFuel(string i_PlateNumber, eFuelType i_FuelType, float i_FuelAmount)
         {
             const float k_FloatEpsilon = 000001f;
 
@@ -134,7 +134,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void Charge(string i_PlateNumber, float i_MinutesAmount)
+        public void ReCharge(string i_PlateNumber, float i_MinutesAmount)
         {
             const float k_FloatEpsilon = 000001f;
 
@@ -168,6 +168,7 @@ namespace Ex03.GarageLogic
         public string GetVehicleDetails(string i_PlateNumber)
         {
             string DetailsMsg = CreateVehicleDetails(i_PlateNumber);
+            
             return DetailsMsg;
         }
 
@@ -179,10 +180,10 @@ namespace Ex03.GarageLogic
                 Vehicle currentvehicle = currentVehicleInfo.Vehicle;
 
                 string Details = string.Format(@"
-            Owner Name is: {0}
-            OWner phone number is: {1}
-            Vehicle status is: {2}
-            {3}",
+Owner Name is: {0}
+OWner phone number is: {1}
+Vehicle status is: {2}
+{3}",
             currentVehicleInfo.OwnerName, currentVehicleInfo.PhoneNumber, currentVehicleInfo.Status, currentvehicle.CreateDetails());
 
                 return Details;

@@ -24,7 +24,7 @@ namespace Ex03.GarageLogic
             Boaz.AddInfo(boaz_str_arr);
 
             GarageManager GM = new GarageManager();
-            
+
             //1
             GM.InsertVehicle("nir", "0502603287", eVehicleType.FuelMotorbike, "205489651");
             GM.InsertVehicle("liran", "0528615483", eVehicleType.ElectricCar, "111111111");
@@ -61,15 +61,15 @@ namespace Ex03.GarageLogic
             GM.InflateWheels("123456789");
 
             //5+6
-            GM.Fuel("205489651", eFuelType.Octan95, 1.6f);
-            GM.Charge("111111111", 0.4f);
+            GM.ReFuel("205489651", eFuelType.Octan95, 1.6f);
+            GM.ReCharge("111111111", 0.4f);
 
 
             //7
             Console.WriteLine(GM.GetVehicleDetails("205489651"));
-            Console.WriteLine( GM.GetVehicleDetails("111111111"));
-            Console.WriteLine( GM.GetVehicleDetails("123456789"));
-
+            Console.WriteLine(GM.GetVehicleDetails("111111111"));
+            Console.WriteLine(GM.GetVehicleDetails("123456789"));
+            Console.WriteLine(Environment.NewLine);
             Console.WriteLine(Nir.CreateDetails());
 
             Console.ReadLine();

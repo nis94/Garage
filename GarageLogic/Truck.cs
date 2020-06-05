@@ -19,9 +19,9 @@ namespace Ex03.GarageLogic
         public static new string MoreInfoMessage()
         {
             string AskForInfoMsg = string.Format(
-                @"{0}
-                 Is Carrying Hazardous Materials? (1 = Yes, 2 = No)
-                 ChargeDisplacement",
+@"{0}
+Is Carrying Hazardous Materials? (1 = Yes, 2 = No)
+ChargeDisplacement",
                 Vehicle.MoreInfoMessage());
 
             return AskForInfoMsg;
@@ -36,10 +36,10 @@ namespace Ex03.GarageLogic
 
         public override string CreateDetails()
         {
-            string InfoMsg = string.Format(@"
-                {0}
-                 Is Carrying Hazardous Materials?: {1}
-                 Charge Displacement Size: {2}",
+            string InfoMsg = string.Format(
+@"{0}
+Is Carrying Hazardous Materials?: {1}
+Charge Displacement Size: {2}",
                 base.CreateDetails(), m_IsCarryingHazardousMaterials, m_ChargeDisplacement);
 
             return InfoMsg;

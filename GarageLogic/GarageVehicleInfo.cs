@@ -18,7 +18,7 @@ namespace Ex03.GarageLogic
             m_OwnerName = i_OwnerName;
             m_OwnerPhoneNumber = i_OwnerPhone;
             m_VehicleStatus = eVehicleStatus.InProgress;
-            m_Vehicle = i_Vehicle;  // ??? DeepClone ???  
+            m_Vehicle = i_Vehicle;  // ??? Do WE Need DeepClone ???  
         }
 
         public eVehicleStatus Status
