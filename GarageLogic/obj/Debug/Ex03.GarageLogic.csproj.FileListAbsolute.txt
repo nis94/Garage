@@ -1,6 +1,6 @@
 C:\Users\nirol\source\repos\Garage\GarageLogic\obj\Debug\Ex03.GarageLogic.csprojAssemblyReference.cache
 C:\Users\nirol\source\repos\Garage\GarageLogic\obj\Debug\GarageLogic.pdb
 C:\Users\nirol\source\repos\Garage\GarageLogic\bin\Debug\GarageLogic.pdb
-C:\Users\nirol\source\repos\Garage\GarageLogic\bin\Debug\GarageLogic.exe.config
-C:\Users\nirol\source\repos\Garage\GarageLogic\bin\Debug\GarageLogic.exe
-C:\Users\nirol\source\repos\Garage\GarageLogic\obj\Debug\GarageLogic.exe
+C:\Users\nirol\source\repos\Garage\GarageLogic\bin\Debug\GarageLogic.dll.config
+C:\Users\nirol\source\repos\Garage\GarageLogic\bin\Debug\GarageLogic.dll
+C:\Users\nirol\source\repos\Garage\GarageLogic\obj\Debug\GarageLogic.dll

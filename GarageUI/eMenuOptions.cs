@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex03.ConsoleUI
 {
-    public enum eMenuOptions
+    internal enum eMenuOptions
     {
         AddVechile = 1,
         ViewFilteredVehicleList,

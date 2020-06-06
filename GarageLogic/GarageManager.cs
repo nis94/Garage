@@ -17,7 +17,7 @@ namespace Ex03.GarageLogic
             {
                 if (key == i_plateNumber)
                 {
-                    // print Error message ---> Exception?  
+                    throw new ArgumentException("Vehicle Already in the garage!");
                     m_VehiclesStorage[key].Status = eVehicleStatus.InProgress;
                     break;
                 }
@@ -27,11 +27,7 @@ namespace Ex03.GarageLogic
             {
                 Vehicle i_NewVehicle = VehicleCreator.CreateNewVehicle(i_VehicleType, i_plateNumber);
 
-                // BUG!!! We need to create here the vehicle, not in the menu
-
-                //i_NewVehicle.AddInfo(UI.GenarateInfo()); // method that returns string arr with all the details
-                //  OR
-                //This should happaned in the UI. (!!! make sence if we'll creat there an object !!!)
+                // BUG!!! We need to create here the vehicle, not in the menu -----> Show To Liran
 
                 GarageVehicleInfo NewVehicleData = new GarageVehicleInfo(i_OwnerName, i_OwnerPhone, i_NewVehicle);
                 m_VehiclesStorage.Add(i_plateNumber, NewVehicleData);

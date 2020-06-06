@@ -1,0 +1,10 @@
+C:\Users\nirol\source\repos\Garage\GarageUI\bin\Debug\GarageUI.exe.config
+C:\Users\nirol\source\repos\Garage\GarageUI\bin\Debug\GarageUI.exe
+C:\Users\nirol\source\repos\Garage\GarageUI\bin\Debug\GarageUI.pdb
+C:\Users\nirol\source\repos\Garage\GarageUI\bin\Debug\GarageLogic.dll
+C:\Users\nirol\source\repos\Garage\GarageUI\bin\Debug\GarageLogic.pdb
+C:\Users\nirol\source\repos\Garage\GarageUI\bin\Debug\GarageLogic.dll.config
+C:\Users\nirol\source\repos\Garage\GarageUI\obj\Debug\Ex03.ConsoleUI.csprojAssemblyReference.cache
+C:\Users\nirol\source\repos\Garage\GarageUI\obj\Debug\Ex03.ConsoleUI.csproj.CopyComplete
+C:\Users\nirol\source\repos\Garage\GarageUI\obj\Debug\GarageUI.exe
+C:\Users\nirol\source\repos\Garage\GarageUI\obj\Debug\GarageUI.pdb

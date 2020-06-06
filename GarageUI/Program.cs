@@ -10,7 +10,8 @@ namespace Ex03.ConsoleUI
     {
         public static void Main()
         {
-            GarageMenu.RunMenu(); 
+            GarageMenu GM = new GarageMenu();
+            GM.RunMenu(); 
             //Motorbike Nir = VehicleCreator.CreateNewVehicle(eVehicleType.FuelMotorbike, "205489651") as Motorbike;
             //Car Liran = VehicleCreator.CreateNewVehicle(eVehicleType.ElectricCar, "111111111") as Car;
             //Truck Boaz = VehicleCreator.CreateNewVehicle(eVehicleType.Truck, "123456789") as Truck;
