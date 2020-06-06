@@ -28,19 +28,19 @@ namespace Ex03.GarageLogic
             }
         }
 
-        protected static string MoreInfoMessage()
+        public virtual string MoreInfoMessage()
         {
             string AskForInfoMsg = string.Format(@"
-Please enter the following information, (after every detail press ENTER):
+Please enter the following information, (Please Enter details divided with COMMAS without SPACES and finally press ENTER):
 1) Model name
 2) Current Energy 
-3) Current Air Pressure(0-32)
+3) Current Air Pressure
 4) Wheels Manufacturer Name");
 
             return AskForInfoMsg;
         }
 
-        public virtual void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
+        public virtual void AddInfo(string[] i_ExtraInfo)
         {
             m_ModelName = i_ExtraInfo[0];
             m_Engine.CurrentEnergyCapacity = float.Parse(i_ExtraInfo[1]);
