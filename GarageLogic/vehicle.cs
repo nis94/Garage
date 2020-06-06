@@ -11,7 +11,7 @@ namespace Ex03.GarageLogic
         protected readonly string m_PlateNumber; 
         protected readonly eVehicleType r_VehicleType;
         protected string m_ModelName;
-        protected float m_EnergyPresentage;
+        protected float m_EnergyPercentage;
         protected List<Wheel> m_Wheels;
         protected Engine m_Engine; 
 
@@ -28,23 +28,23 @@ namespace Ex03.GarageLogic
             }
         }
 
-        protected static string MoreInfoMessage()
+        public virtual string MoreInfoMessage()
         {
             string AskForInfoMsg = string.Format(@"
-Please enter the following information, (after every detail press ENTER):
+Please enter the following information, (Please Enter details divided with COMMAS without SPACES and finally press ENTER):
 1) Model name
 2) Current Energy 
-3) Current Air Pressure(0-32)
+3) Current Air Pressure
 4) Wheels Manufacturer Name");
 
             return AskForInfoMsg;
         }
 
-        public virtual void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
+        public virtual void AddInfo(string[] i_ExtraInfo)
         {
             m_ModelName = i_ExtraInfo[0];
             m_Engine.CurrentEnergyCapacity = float.Parse(i_ExtraInfo[1]);
-            m_EnergyPresentage = (m_Engine.CurrentEnergyCapacity / m_Engine.MaxEnergyCapacity) * 100;
+            m_EnergyPercentage = (m_Engine.CurrentEnergyCapacity / m_Engine.MaxEnergyCapacity) * 100;
             foreach (Wheel wheel in m_Wheels)
             {
                 wheel.CurrentAirPresuure = float.Parse(i_ExtraInfo[2]);
@@ -56,10 +56,10 @@ Please enter the following information, (after every detail press ENTER):
         {
             string InfoMsg = string.Format(
 @"Model name: {0}
-Current Energy: {1} 
+Current Energy percentage: {1} 
 Current Air Pressure: {2}
 Wheels Manufacturer Name: {3}",
-                m_ModelName, m_EnergyPresentage, m_Wheels[0].CurrentAirPresuure, m_Wheels[0].ManufacturerName);
+                m_ModelName, m_EnergyPercentage, m_Wheels[0].CurrentAirPresuure, m_Wheels[0].ManufacturerName);
 
             return InfoMsg;
         }
@@ -85,11 +85,11 @@ Wheels Manufacturer Name: {3}",
         {
             get
             {
-                return m_EnergyPresentage;
+                return m_EnergyPercentage;
             }
             set
             {
-                m_EnergyPresentage = value;
+                m_EnergyPercentage = value;
             }
         }
 
