@@ -84,7 +84,7 @@ namespace Ex03.GarageLogic
             {
                 float max = m_VehiclesStorage[i_PlateNumber].Vehicle.Wheels[0].MaxAirPressure;
 
-                foreach (Wheel wheel in m_VehiclesStorage[i_PlateNumber].Vehicle.Wheels) //run on all the wheels of the vehicle
+                foreach (Wheel wheel in m_VehiclesStorage[i_PlateNumber].Vehicle.Wheels) 
                 {
                     wheel.CurrentAirPresuure = max;
                 }
@@ -96,9 +96,7 @@ namespace Ex03.GarageLogic
         }
 
         public void ReFuel(string i_PlateNumber, eFuelType i_FuelType, float i_FuelAmount)
-        {
-            const float k_FloatEpsilon = 000001f;
-
+        { 
             if (m_VehiclesStorage.ContainsKey(i_PlateNumber) == true)
             {
                 Vehicle currentVehicle = m_VehiclesStorage[i_PlateNumber].Vehicle;
@@ -108,7 +106,7 @@ namespace Ex03.GarageLogic
                     FuelEngine currentEngine = currentVehicle.Engine as FuelEngine;
                     if (currentEngine.FuelType == i_FuelType)
                     {
-                        if (currentEngine.MaxEnergyCapacity + k_FloatEpsilon >= currentEngine.CurrentEnergyCapacity + i_FuelAmount)  //BUG!!!!! 7<=7 go to else part
+                        if (currentEngine.CurrentEnergyCapacity + i_FuelAmount <= currentEngine.MaxEnergyCapacity)  //###BUG!!!!! X<=X go to else part
                         {
                             currentEngine.ReFuel(i_FuelAmount);
                             currentVehicle.EnergyPresentage = (currentEngine.CurrentEnergyCapacity / currentEngine.MaxEnergyCapacity) * 100;
@@ -136,7 +134,6 @@ namespace Ex03.GarageLogic
 
         public void ReCharge(string i_PlateNumber, float i_MinutesAmount)
         {
-            const float k_FloatEpsilon = 000001f;
 
             if (m_VehiclesStorage.ContainsKey(i_PlateNumber) == true)
             {
@@ -144,7 +141,7 @@ namespace Ex03.GarageLogic
                 if (currentVehicle.Engine.Type == eEngineType.Electric)
                 {
                     ElectricEngine currentEngine = currentVehicle.Engine as ElectricEngine;
-                    if (currentEngine.CurrentEnergyCapacity + i_MinutesAmount <= currentEngine.MaxEnergyCapacity + k_FloatEpsilon) 
+                    if (currentEngine.CurrentEnergyCapacity + i_MinutesAmount <= currentEngine.MaxEnergyCapacity) //###BUG!!!!! X<=X go to else part
                     {
                         currentEngine.ReCharge(i_MinutesAmount);
                         currentVehicle.EnergyPresentage = (currentEngine.CurrentEnergyCapacity / currentEngine.MaxEnergyCapacity) * 100;

@@ -30,11 +30,12 @@ namespace Ex03.GarageLogic
 
         protected static string MoreInfoMessage()
         {
-            string AskForInfoMsg = string.Format(@"Please enter the following information, (after every detail press ENTER):
-                1) Model name
-                2) Current Energy 
-                3) Current Air Pressure(0-32)
-                4) Wheels Manufacturer Name");
+            string AskForInfoMsg = string.Format(@"
+Please enter the following information, (after every detail press ENTER):
+1) Model name
+2) Current Energy 
+3) Current Air Pressure(0-32)
+4) Wheels Manufacturer Name");
 
             return AskForInfoMsg;
         }
@@ -53,11 +54,11 @@ namespace Ex03.GarageLogic
 
         public virtual string CreateDetails()
         {
-            string InfoMsg = string.Format(@"
-                 Model name: {0}
-                 Current Energy: {1} 
-                 Current Air Pressure: {2}
-                 Wheels Manufacturer Name: {3}",
+            string InfoMsg = string.Format(
+@"Model name: {0}
+Current Energy: {1} 
+Current Air Pressure: {2}
+Wheels Manufacturer Name: {3}",
                 m_ModelName, m_EnergyPresentage, m_Wheels[0].CurrentAirPresuure, m_Wheels[0].ManufacturerName);
 
             return InfoMsg;

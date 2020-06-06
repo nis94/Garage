@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace Ex03.ConsoleUI
 {
-    public enum eMenu
+    public enum eMenuOptions
     {
         AddVechile = 1,
         ViewFilteredVehicleList,
         ChangeVehicleStatus,
-        PumpVehicleWheel,
+        PumpVehicleWheels,
         ReFuelVehicle,
         ReChargeVehicle,
-        ViewVehicleInfo
+        ViewVehicleInfo,
+        Exit
     }
 }
