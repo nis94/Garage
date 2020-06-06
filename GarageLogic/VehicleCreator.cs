@@ -10,30 +10,30 @@ namespace Ex03.GarageLogic
     {
         public static Vehicle CreateNewVehicle(eVehicleType i_VehicleType, string i_plateNumber)
         {
-            Vehicle o_NewVehicle = null;
+            Vehicle newVehicle = null;
 
             switch (i_VehicleType)
             {
                 case eVehicleType.FuelCar:
-                    o_NewVehicle = new Car(eVehicleType.FuelCar, i_plateNumber);
+                    newVehicle = new Car(eVehicleType.FuelCar, i_plateNumber);
                     break;
                 case eVehicleType.ElectricCar:
-                    o_NewVehicle = new Car(eVehicleType.ElectricCar, i_plateNumber);
+                    newVehicle = new Car(eVehicleType.ElectricCar, i_plateNumber);
                     break;
                 case eVehicleType.FuelMotorbike:
-                    o_NewVehicle = new Motorbike(eVehicleType.FuelMotorbike, i_plateNumber);
+                    newVehicle = new Motorbike(eVehicleType.FuelMotorbike, i_plateNumber);
                     break;
                 case eVehicleType.ElectricMotorbike:
-                    o_NewVehicle = new Motorbike(eVehicleType.ElectricMotorbike, i_plateNumber);
+                    newVehicle = new Motorbike(eVehicleType.ElectricMotorbike, i_plateNumber);
                     break;
                 case eVehicleType.Truck:
-                    o_NewVehicle = new Truck(eVehicleType.Truck, i_plateNumber);
+                    newVehicle = new Truck(eVehicleType.Truck, i_plateNumber);
                     break;
                 default:
                     break;
             }
 
-            return o_NewVehicle;
+            return newVehicle;
         }
     }
 }

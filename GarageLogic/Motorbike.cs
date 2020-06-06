@@ -21,13 +21,13 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public static new string MoreInfoMessage()
+        public override string MoreInfoMessage()
         {
             string AskForInfoMsg = string.Format(
 @"{0}
-License Type: (1 = A, 2 = A1, 3 = AA, 4 = B)
-EngineDisplacement",
-               Vehicle.MoreInfoMessage());
+License Type: (1-A, 2-A1, 3-AA, 4-B)
+EngineDisplacement: ",
+               base.MoreInfoMessage());
 
             return AskForInfoMsg;
         }

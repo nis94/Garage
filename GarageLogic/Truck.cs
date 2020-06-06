@@ -16,13 +16,13 @@ namespace Ex03.GarageLogic
             m_Engine = new FuelEngine(120f, eFuelType.Soler);
         }
 
-        public static new string MoreInfoMessage()
+        public override string MoreInfoMessage()
         {
             string AskForInfoMsg = string.Format(
 @"{0}
-Is Carrying Hazardous Materials? (1 = Yes, 2 = No)
+Is Carrying Hazardous Materials? (1-Yes, 2-No)
 ChargeDisplacement",
-                Vehicle.MoreInfoMessage());
+                base.MoreInfoMessage());
 
             return AskForInfoMsg;
         }

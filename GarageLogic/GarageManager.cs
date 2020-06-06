@@ -26,9 +26,7 @@ namespace Ex03.GarageLogic
             if (isExist == false)
             {
                 Vehicle i_NewVehicle = VehicleCreator.CreateNewVehicle(i_VehicleType, i_plateNumber);
-
-                // BUG!!! We need to create here the vehicle, not in the menu -----> Show To Liran
-
+                // BUG!!!-----> Show To Liran
                 GarageVehicleInfo NewVehicleData = new GarageVehicleInfo(i_OwnerName, i_OwnerPhone, i_NewVehicle);
                 m_VehiclesStorage.Add(i_plateNumber, NewVehicleData);
             }

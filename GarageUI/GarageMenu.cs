@@ -13,11 +13,13 @@ namespace Ex03.ConsoleUI
         internal void RunMenu()
         {
             const bool k_IsUserChoseExit = true;
+            const int k_MinMenuOption = 1;
+            const int k_MaxMenuOption = 8;
 
             while (k_IsUserChoseExit == true)
             {
                 Console.WriteLine("---WELLCOME TO THE AMAZING GARAGE---");
-                string i_Menu = string.Format(@"Please select one of the options by entering the representing number: 
+                string i_Menu = string.Format(@" 
 1. Add New Vehicle 
 2. View Filtered Vehicle List
 3. Change Vehicle Status
@@ -25,15 +27,26 @@ namespace Ex03.ConsoleUI
 5. ReFuel Vehicle
 6. ReCharge Vehicle
 7. View Vehicle Details
-8. Exit Garage");
+8. Exit Garage
+Please select one of the options by entering the representing number: ");
                 Console.WriteLine(i_Menu);
-                string i_UserInput = Console.ReadLine();
-                while (int.Parse(i_UserInput) < 1 || int.Parse(i_UserInput) > 8)
+                string userInput = Console.ReadLine();
+                bool isValid = int.TryParse(userInput, out int chosenNumber);
+                if(isValid==true)
                 {
-                    Console.WriteLine("Please choose a number from the menu again");
-                    i_UserInput = Console.ReadLine();
+                    isValid = chosenNumber >= k_MinMenuOption && chosenNumber <= k_MaxMenuOption;
                 }
-                ManageUserChoice((eMenuOptions)int.Parse(i_UserInput));
+                while (isValid==false) 
+                {
+                    Console.WriteLine("Invalid input! Please choose a number from the menu again");
+                    userInput = Console.ReadLine();
+                    isValid = int.TryParse(userInput, out chosenNumber);
+                    if (isValid == true)
+                    {
+                        isValid = chosenNumber >= k_MinMenuOption || chosenNumber <= k_MaxMenuOption;
+                    }
+                }
+                ManageUserChoice((eMenuOptions)int.Parse(userInput));
             }
         }
 
@@ -42,8 +55,9 @@ namespace Ex03.ConsoleUI
             switch (i_MenuOptions)
             {
                 case eMenuOptions.AddVechile:
-                    string[] NewVehicleInfo = NewVehicleInfoFromUser();
-                    m_GarageManager.InsertVehicle(NewVehicleInfo[0], NewVehicleInfo[1], (GarageLogic.eVehicleType)int.Parse(NewVehicleInfo[2]), NewVehicleInfo[3]);
+                    string[] newVehicleInfo = NewVehicleInfoFromUser();
+                    m_GarageManager.InsertVehicle(newVehicleInfo[0], newVehicleInfo[1], (GarageLogic.eVehicleType)int.Parse(newVehicleInfo[2]), newVehicleInfo[3]);
+                    ManageNewVehicleExtraInfoFromUser(newVehicleInfo[3]);
                     break;
                 //case eMenuOptions.ViewFilteredVehicleList:
                 //    //Let user decide 
@@ -84,9 +98,10 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        private static string[] NewVehicleInfoFromUser()
+        private string[] NewVehicleInfoFromUser()
         {
-            string[] newVehicleInfo = null;
+            const int k_NumOfData = 4;
+            string[] newVehicleInfo = new string[k_NumOfData];
 
             Console.Write("Please enter vehicle owner name: ");
             string ownerName = Console.ReadLine();
@@ -118,14 +133,14 @@ namespace Ex03.ConsoleUI
                 }
             }
             newVehicleInfo[1] = ownerPhone;
-            Console.WriteLine("Please enter the vehicle type : 1-Fuel Car, 2-Electric Car, 3-Fuel MotorBike, 4-Electric MotorBike, 5-Truck");
+            Console.WriteLine("Please enter the vehicle type : (1-Fuel Car, 2-Electric Car, 3-Fuel MotorBike, 4-Electric MotorBike, 5-Truck)");
             string vehicleType = Console.ReadLine();
             int chosenNumber;
             bool isValidVehicleType = false;
 
             if (vehicleType != string.Empty)
             {
-                isValidVehicleType = int.TryParse(ownerPhone, out chosenNumber);
+                isValidVehicleType = int.TryParse(vehicleType, out chosenNumber);
                 if(isValidVehicleType==true)
                 {
                     isValidVehicleType = chosenNumber >= 1 && chosenNumber <= 5;
@@ -146,7 +161,7 @@ namespace Ex03.ConsoleUI
                 }
             }
             newVehicleInfo[2] = vehicleType;
-            Console.Write("Please enter license plate number");
+            Console.Write("Please enter license plate number: ");
             string plateNumber = Console.ReadLine();
 
             while (plateNumber == string.Empty)
@@ -159,6 +174,25 @@ namespace Ex03.ConsoleUI
             return newVehicleInfo;
         }
 
+        private void ManageNewVehicleExtraInfoFromUser(string i_PlateNumber)
+        {
+            const int k_NumOfInputStrings = 6;
+            Console.WriteLine(m_GarageManager.VehiclesStorage[i_PlateNumber].Vehicle.MoreInfoMessage());
+            string[] extraVehicleInfo = Console.ReadLine().Split(',');
+            while (extraVehicleInfo.Length != k_NumOfInputStrings)
+            {
+                if(extraVehicleInfo.Length > k_NumOfInputStrings)
+                {
+                    Console.WriteLine("There are too many parameters, Please try again:");
+                }
+                else 
+                {
+                    Console.WriteLine("There are not enough parameters, Please try again:");
+                }
+                extraVehicleInfo = Console.ReadLine().Split(',');
+            }
+            m_GarageManager.VehiclesStorage[i_PlateNumber].Vehicle.AddInfo(extraVehicleInfo);
+        }
 
     }
 }

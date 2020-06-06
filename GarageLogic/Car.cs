@@ -23,13 +23,13 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public static new string MoreInfoMessage()
+        public override string MoreInfoMessage()
         {
             string AskForInfoMsg = string.Format(
 @"{0}
-Color: (1 = Red, 2 = White, 3 = Black, 4 = Silver)
+Color: (1-Red, 2-White, 3-Black, 4-Silver)
 Number Of Doors(2 - 5)",
-            Vehicle.MoreInfoMessage());
+            base.MoreInfoMessage());
 
             return AskForInfoMsg;
         }
