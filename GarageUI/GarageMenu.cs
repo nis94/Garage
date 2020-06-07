@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ex03.ConsoleUI
 {
@@ -11,7 +8,6 @@ namespace Ex03.ConsoleUI
         private readonly GarageLogic.GarageManager m_GarageManager = new GarageLogic.GarageManager();
         private const int k_Yes = 1;
         private const int k_No = 2;
-
 
         internal void RunMenu()
         {
@@ -41,15 +37,15 @@ Please select one of the options by entering the representing number: ");
                 }
                 while (isValid == false)
                 {
-                    Console.WriteLine("Invalid input! Please choose a number from the menu again");
+                    Console.Write("Invalid input! Please choose a number from the menu again: ");
                     userInput = Console.ReadLine();
                     isValid = int.TryParse(userInput, out chosenNumber);
                     if (isValid == true)
                     {
-                        isValid = chosenNumber >= k_MinMenuOption || chosenNumber <= k_MaxMenuOption;
+                        isValid = chosenNumber >= k_MinMenuOption && chosenNumber <= k_MaxMenuOption;
                     }
                 }
-                ManageUserChoice((eMenuOptions)int.Parse(userInput));///#### (BUG except minus numbers )
+                ManageUserChoice((eMenuOptions)int.Parse(userInput));
             }
         }
 
@@ -58,14 +54,25 @@ Please select one of the options by entering the representing number: ");
             switch (i_MenuOptions)
             {
                 case eMenuOptions.AddVechile:
-                    string[] newVehicleInfo = NewVehicleInfoFromUser();
-                    m_GarageManager.InsertVehicle(newVehicleInfo[0], newVehicleInfo[1], (GarageLogic.eVehicleType)int.Parse(newVehicleInfo[2]), newVehicleInfo[3]);
-                    ManageNewVehicleExtraInfoFromUser(newVehicleInfo[3]);
+                    try
+                    {
+                        string[] newVehicleInfo = NewVehicleInfoFromUser();
+                        m_GarageManager.InsertVehicle(newVehicleInfo[0], newVehicleInfo[1], (GarageLogic.eVehicleType)int.Parse(newVehicleInfo[2]), newVehicleInfo[3]);
+                        ManageNewVehicleExtraInfoFromUser(newVehicleInfo[3]);
+                    }
+                    catch(ArgumentException AE)
+                    {
+                        Console.WriteLine(AE.Message);
+                        if (ReturnToMainMenu() == true)
+                        {
+                            break;
+                        }
+                    }
                     break;
                 case eMenuOptions.ViewFilteredVehicleList:
                     Console.Write("Would you wish to filter by vehicle status? (1-Yes,2-No): ");
-                    string userInput = Console.ReadLine();              // Should merge Those
-                    int isFiltered = CheckFilterValidity(userInput);   //  Tow Lines to 1 methods
+                    string userInput = Console.ReadLine();             
+                    int isFiltered = CheckFilterValidity(userInput);   
 
                     if (isFiltered == k_No)
                     {
@@ -73,8 +80,8 @@ Please select one of the options by entering the representing number: ");
                     }
                     else
                     {
-                        Console.Write("Please choose vehicle status filter(1-In Progress, 2-Fixed, 3-Paid): ");  // Should merge Those
-                        userInput = Console.ReadLine();                                                         //  Tow Lines to 1 methods
+                        Console.Write("Please choose vehicle status filter(1-In Progress, 2-Fixed, 3-Paid): "); 
+                        userInput = Console.ReadLine();                                                         
                         int StatusFilter = CheckStatusFilterValitidy(userInput);
                         PrintStringArray(m_GarageManager.ShowFilteredPlateNumbers((GarageLogic.eVehicleStatus)StatusFilter));
                     }
@@ -94,11 +101,15 @@ Please select one of the options by entering the representing number: ");
                         {
                             Console.WriteLine(AE.Message);
                             isValid = false;
+                            if (ReturnToMainMenu() == true)
+                            {
+                                break;
+                            }
                             plateNumber = getValidPlateNumberFromUser();
                         }
                     }
                     break;
-                case eMenuOptions.PumpVehicleWheels:
+                case eMenuOptions.InflateVehicleWheels:
                     plateNumber = getValidPlateNumberFromUser();
                     isValid = false;
                     while (isValid == false)
@@ -112,18 +123,79 @@ Please select one of the options by entering the representing number: ");
                         {
                             Console.WriteLine(AE.Message);
                             isValid = false;
+                            if (ReturnToMainMenu() == true)
+                            {
+                                break;
+                            }
                             plateNumber = getValidPlateNumberFromUser();
                         }
                     }
                     break;
-                //case eMenuOptions.ReFuelVehicle:
-                //    //ask from user 
-                //    m_GarageManager.ReFuel();
-                //    break;
-                //case eMenuOptions.ReChargeVehicle:
-                //    //ask from user 
-                //    m_GarageManager.ReCharge(//params);
-                //    break;
+                case eMenuOptions.ReFuelVehicle:
+                    isValid = false;
+                    while (isValid == false)
+                    {
+                        isValid = true;
+                        plateNumber = getValidPlateNumberFromUser();
+                        GarageLogic.eFuelType fuelType = getValidFuelTypeFromUser();
+                    float fuelAmount = getValidFuelAmountFromUser();
+                      
+                        try
+                        {
+                            m_GarageManager.ReFuel(plateNumber, fuelType, fuelAmount);
+                        }
+                        catch (GarageLogic.ValueOutOfRangeException VOORE)
+                        {
+                            Console.WriteLine(VOORE.Message);
+                            isValid = false;
+                            if (ReturnToMainMenu() == true)
+                            {
+                                break;
+                            }
+                        }
+                        catch (ArgumentException AE)
+                        {
+                            Console.WriteLine(AE.Message);
+                            isValid = false;
+                            if (ReturnToMainMenu() == true)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                case eMenuOptions.ReChargeVehicle:
+                    isValid = false;
+                    while (isValid == false)
+                    {
+                        isValid = true;
+                        plateNumber = getValidPlateNumberFromUser();
+                        float fuelAmount = getValidFuelAmountFromUser();
+
+                        try
+                        {
+                            m_GarageManager.ReCharge(plateNumber, fuelAmount);
+                        }
+                        catch (GarageLogic.ValueOutOfRangeException VOORE)
+                        {
+                            Console.WriteLine(VOORE.Message);
+                            isValid = false;
+                            if (ReturnToMainMenu() == true)
+                            {
+                                break;
+                            }                           
+                        }
+                        catch (ArgumentException AE)
+                        {
+                            Console.WriteLine(AE.Message);
+                            isValid = false;
+                            if (ReturnToMainMenu() == true)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    break;
                 case eMenuOptions.ViewVehicleInfo:
                     plateNumber = getValidPlateNumberFromUser();
                     isValid = false;
@@ -138,6 +210,10 @@ Please select one of the options by entering the representing number: ");
                         {
                             Console.WriteLine(AE.Message);
                             isValid = false;
+                            if (ReturnToMainMenu() == true)
+                            {
+                                break;
+                            }
                             plateNumber = getValidPlateNumberFromUser();
                         }
                     }
@@ -244,7 +320,6 @@ Please select one of the options by entering the representing number: ");
                 extraVehicleInfo = Console.ReadLine().Split(',');
             }
             m_GarageManager.VehiclesStorage[i_PlateNumber].Vehicle.AddInfo(extraVehicleInfo);
-            //handle exceptions here
         }
 
         private int CheckFilterValidity(string i_UserInput)
@@ -268,25 +343,25 @@ Please select one of the options by entering the representing number: ");
             return isFiltered;
         }
 
-        private int CheckStatusFilterValitidy(string i_UserInput)
+        private int CheckStatusFilterValitidy(string i_FilterToCheck)
         {
-            bool isValid = int.TryParse(i_UserInput, out int StatusFilter);
+            bool isValid = int.TryParse(i_FilterToCheck, out int statusFilter);
             if (isValid == true)
             {
-                isValid = StatusFilter <= 3 || StatusFilter >= 1;
+                isValid = statusFilter <= 3 || statusFilter >= 1;
             }
             while (isValid == false)
             {
                 Console.Write("Invalid Input! please try again (1-In Progress, 2-Fixed, 3-Paid): ");
-                i_UserInput = Console.ReadLine();
-                isValid = int.TryParse(i_UserInput, out StatusFilter);
+                i_FilterToCheck = Console.ReadLine();
+                isValid = int.TryParse(i_FilterToCheck, out statusFilter);
                 if (isValid == true)
                 {
-                    isValid = StatusFilter <= 3 || StatusFilter >= 1;
+                    isValid = statusFilter <= 3 || statusFilter >= 1;
                 }
             }
 
-            return StatusFilter;
+            return statusFilter;
         }
 
         private void PrintStringArray(List<string> i_StringList)
@@ -310,6 +385,7 @@ Please select one of the options by entering the representing number: ");
 
             return plateNumber;
         }
+
         private GarageLogic.eVehicleStatus getValidVehicleStatusFromUser()
         {
             Console.Write("Please enter the new status (1-In Progress, 2-Fixed, 3-Paid): ");
@@ -319,8 +395,71 @@ Please select one of the options by entering the representing number: ");
             return (GarageLogic.eVehicleStatus)chosenStatus;
         }
 
+        private GarageLogic.eFuelType getValidFuelTypeFromUser()
+        {
+            Console.Write("Please enter the fuel type (1-Soler, 2-Octan95, 3-Octan96, 4-Octan98): "); 
+            string userInput = Console.ReadLine();
+            bool isValid = int.TryParse(userInput, out int fuelType);
+            if (isValid == true)
+            {
+                isValid = fuelType <= 4 && fuelType >= 1;
+            }
+            while (isValid == false)
+            {
+                Console.Write("Please enter the fuel type (1-Soler, 2-Octan95, 3-Octan96, 4-Octan98): ");
+                userInput = Console.ReadLine();
+                isValid = int.TryParse(userInput, out fuelType);
+                if (isValid == true)
+                {
+                    isValid = fuelType <= 4 && fuelType >= 1;
+                }
+            }
+
+            return (GarageLogic.eFuelType)fuelType;
+        }
+
+        private float getValidFuelAmountFromUser()
+        {
+            bool isValid = false;
+            float fuelAmount = 0;
+
+            Console.Write("Please enter fuel amount: ");
+            while (isValid == false)
+            {
+                isValid =true;
+                string i_UserInput = Console.ReadLine();
+                try
+                {
+                    fuelAmount = float.Parse(i_UserInput);
+                }
+                catch(FormatException FE)
+                {
+                    Console.WriteLine("Only Numbers Allowed!");
+                    isValid = false;
+                }
+            }
+
+            return fuelAmount;
+        }
         
-        
+        private bool ReturnToMainMenu()
+        {
+            bool toReturn = false;
+
+            Console.Write("Return to main menu? (y/n)");
+            string userInput = Console.ReadLine();
+            while (userInput != "y" && userInput != "n") 
+            {
+                Console.Write("Invalid input!, Please choose 'y' or 'n': ");
+                userInput = Console.ReadLine();
+            }
+            if (userInput == "y")
+            {
+                toReturn = true;
+            }
+
+            return toReturn;
+        }
 
         private void ExitMenu()
         {

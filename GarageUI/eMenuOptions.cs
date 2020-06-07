@@ -11,7 +11,7 @@ namespace Ex03.ConsoleUI
         AddVechile = 1,
         ViewFilteredVehicleList,
         ChangeVehicleStatus,
-        PumpVehicleWheels,
+        InflateVehicleWheels,
         ReFuelVehicle,
         ReChargeVehicle,
         ViewVehicleInfo,

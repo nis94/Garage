@@ -17,9 +17,8 @@ namespace Ex03.GarageLogic
             {
                 if (key == i_plateNumber)
                 {
-                    throw new ArgumentException("Vehicle Already in the garage!");
                     m_VehiclesStorage[key].Status = eVehicleStatus.InProgress;
-                    break;
+                    throw new ArgumentException("Vehicle already in the garage! Changing vehicle status to 'In-Progress'");
                 }
             }
 
@@ -99,7 +98,7 @@ namespace Ex03.GarageLogic
                     FuelEngine currentEngine = currentVehicle.Engine as FuelEngine;
                     if (currentEngine.FuelType == i_FuelType)
                     {
-                        if (currentEngine.CurrentEnergyCapacity + i_FuelAmount <= currentEngine.MaxEnergyCapacity)  //###BUG!!!!! X<=X go to else part
+                        if (currentEngine.CurrentEnergyCapacity + i_FuelAmount <= currentEngine.MaxEnergyCapacity)
                         {
                             currentEngine.ReFuel(i_FuelAmount);
                             currentVehicle.EnergyPresentage = (currentEngine.CurrentEnergyCapacity / currentEngine.MaxEnergyCapacity) * 100;
@@ -116,7 +115,7 @@ namespace Ex03.GarageLogic
                 }
                 else
                 {
-                    throw new ArgumentException("Engine Type mismatch!");
+                    throw new ArgumentException("Engine Type mismatch!, Please Enter Fueled Car Plate Number");
                 }
             }
             else
@@ -134,7 +133,7 @@ namespace Ex03.GarageLogic
                 if (currentVehicle.Engine.Type == eEngineType.Electric)
                 {
                     ElectricEngine currentEngine = currentVehicle.Engine as ElectricEngine;
-                    if (currentEngine.CurrentEnergyCapacity + i_MinutesAmount <= currentEngine.MaxEnergyCapacity) //###BUG!!!!! X<=X go to else part
+                    if (currentEngine.CurrentEnergyCapacity + i_MinutesAmount <= currentEngine.MaxEnergyCapacity) 
                     {
                         currentEngine.ReCharge(i_MinutesAmount);
                         currentVehicle.EnergyPresentage = (currentEngine.CurrentEnergyCapacity / currentEngine.MaxEnergyCapacity) * 100;
@@ -146,7 +145,7 @@ namespace Ex03.GarageLogic
                 }
                 else
                 {
-                    throw new ArgumentException("Engine Type mismatch!");
+                    throw new ArgumentException("Engine Type mismatch! Please Enter Electric Car Plate Number");
                 }
             }
             else
