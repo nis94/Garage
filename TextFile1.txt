@@ -1,0 +1,9 @@
+1) Clear-Screen ??? (Should add DLL)
+2) 
+3) StyleCop - (Nir-Logic, Liran-UI)
+4) Move to other solution - Nir
+5) Diagram - Liran
+6) Test All scenarios 
+7) Fuel\Electric Engine endless loop - add back to menu option 
+8) Move every single case to "manage method" - Nir
+9) Accses Modifiers

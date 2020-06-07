@@ -11,7 +11,7 @@ namespace Ex03.GarageLogic
         protected readonly string m_PlateNumber; 
         protected readonly eVehicleType r_VehicleType;
         protected string m_ModelName;
-        protected float m_EnergyPresentage;
+        protected float m_EnergyPercentage;
         protected List<Wheel> m_Wheels;
         protected Engine m_Engine; 
 
@@ -44,7 +44,7 @@ Please enter the following information, (Please Enter details divided with COMMA
         {
             m_ModelName = i_ExtraInfo[0];
             m_Engine.CurrentEnergyCapacity = float.Parse(i_ExtraInfo[1]);
-            m_EnergyPresentage = (m_Engine.CurrentEnergyCapacity / m_Engine.MaxEnergyCapacity) * 100;
+            m_EnergyPercentage = (m_Engine.CurrentEnergyCapacity / m_Engine.MaxEnergyCapacity) * 100;
             foreach (Wheel wheel in m_Wheels)
             {
                 wheel.CurrentAirPresuure = float.Parse(i_ExtraInfo[2]);
@@ -56,10 +56,10 @@ Please enter the following information, (Please Enter details divided with COMMA
         {
             string InfoMsg = string.Format(
 @"Model name: {0}
-Current Energy: {1} 
+Current Energy percentage: {1} 
 Current Air Pressure: {2}
 Wheels Manufacturer Name: {3}",
-                m_ModelName, m_EnergyPresentage, m_Wheels[0].CurrentAirPresuure, m_Wheels[0].ManufacturerName);
+                m_ModelName, m_EnergyPercentage, m_Wheels[0].CurrentAirPresuure, m_Wheels[0].ManufacturerName);
 
             return InfoMsg;
         }
@@ -85,11 +85,11 @@ Wheels Manufacturer Name: {3}",
         {
             get
             {
-                return m_EnergyPresentage;
+                return m_EnergyPercentage;
             }
             set
             {
-                m_EnergyPresentage = value;
+                m_EnergyPercentage = value;
             }
         }
 
