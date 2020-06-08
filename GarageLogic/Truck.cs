@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
@@ -11,7 +8,7 @@ namespace Ex03.GarageLogic
         bool m_IsCarryingHazardousMaterials;
         float m_ChargeCapacity;
 
-        public Truck(eVehicleType i_VehicleType, string i_plateNumber) : base(16, 28, i_VehicleType, i_plateNumber)
+        internal Truck(eVehicleType i_VehicleType, string i_plateNumber) : base(16, 28, i_VehicleType, i_plateNumber)
         {
             m_Engine = new FuelEngine(120f, eFuelType.Soler);
         }

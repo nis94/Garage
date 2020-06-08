@@ -1,9 +1,9 @@
-1) Check Exeptions Messages
-2) Check if there is still BUG in the Presentage of energy >100%  
+1) 
+2) 
 3) StyleCop + Accses Modifiers - (Nir-Logic, Liran-UI)
 4)
-5) Diagram - Liran
-6) Test Multiple scenarios 
+5) 
+6) 
 7) 
 8) 
 9) 

@@ -12,7 +12,7 @@ namespace Ex03.GarageLogic
         protected List<Wheel> m_Wheels;
         protected Engine m_Engine;
 
-        public Vehicle(int i_NumOfWheels, float i_MaxAirPressure, eVehicleType i_VehicleType, string i_PlateNumber)
+        internal Vehicle(int i_NumOfWheels, float i_MaxAirPressure, eVehicleType i_VehicleType, string i_PlateNumber)
         {
             r_PlateNumber = i_PlateNumber;
             m_Wheels = new List<Wheel>();
@@ -60,7 +60,7 @@ namespace Ex03.GarageLogic
 
             if (float.Parse(i_ExtraInfo[2]) < 0 || float.Parse(i_ExtraInfo[2]) > m_Wheels[0].MaxAirPressure)
             {
-                throw new ValueOutOfRangeException(0, m_Wheels[0].MaxAirPressure, "Current energy capacity");
+                throw new ValueOutOfRangeException(0, m_Wheels[0].MaxAirPressure, "Current air pressure capacity");
             }
             else if (i_ExtraInfo[3] == string.Empty)
             {
@@ -80,7 +80,7 @@ namespace Ex03.GarageLogic
         {
             string InfoMsg = string.Format(
 @"Model name: {0}
-Amount Of Energy Left: {1} 
+Amount Of Energy Left: {1}% 
 Current Air Pressure: {2}
 Wheels Manufacturer Name: {3}",
                 m_ModelName, m_EnergyPercentage, m_Wheels[0].CurrentAirPresuure, m_Wheels[0].ManufacturerName);

@@ -9,14 +9,14 @@ namespace Ex03.GarageLogic
     public class ValueOutOfRangeException : Exception
     {
         private const string m_ExceptionMessage = "The {0} must be between {1} and {2}";
-        private float m_MinValue;
-        private float m_MaxValue;
+        private readonly float r_MinValue;
+        private readonly float r_MaxValue;
 
         public ValueOutOfRangeException(float i_MinValue, float i_MaxValue, string i_StringFromOutSide)
             : base(string.Format(m_ExceptionMessage, i_StringFromOutSide, i_MinValue, i_MaxValue))
         {
-            m_MinValue = i_MinValue;
-            m_MaxValue = i_MinValue;
+            r_MinValue = i_MinValue;
+            r_MaxValue = i_MinValue;
         }
     }
 }

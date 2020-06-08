@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
@@ -11,7 +8,7 @@ namespace Ex03.GarageLogic
         eColor m_Color;
         eNumOfDoors m_NumOfDoors;
 
-        public Car(eVehicleType i_VehicleType, string i_plateNumber) : base(4, 32, i_VehicleType, i_plateNumber)
+        internal Car(eVehicleType i_VehicleType, string i_plateNumber) : base(4, 32, i_VehicleType, i_plateNumber)
         {
             if (i_VehicleType.Equals(eVehicleType.ElectricCar)) 
             {
@@ -31,7 +28,7 @@ namespace Ex03.GarageLogic
 
             return AskForInfoMsg;
         }
-      
+
         public override void AddInfo(List<string> i_ExtraInfo) 
         {
             base.AddInfo(i_ExtraInfo);
@@ -66,7 +63,7 @@ Number Of Doors: {2}",
             return InfoMsg;
         }
 
-        public eColor Color 
+        internal eColor Color 
         { 
             get
             {
@@ -77,7 +74,7 @@ Number Of Doors: {2}",
                 m_Color = value;
             }
         }
-        public eNumOfDoors NumOfDoors 
+        internal eNumOfDoors NumOfDoors 
         {
             get
             {

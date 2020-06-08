@@ -8,7 +8,7 @@ namespace Ex03.GarageLogic
         private eLicenseType m_LicenseType;
         private int m_EngineCapacity;
 
-        public Motorbike(eVehicleType i_VehicleType, string i_plateNumber) : base(2, 30, i_VehicleType, i_plateNumber)
+        internal Motorbike(eVehicleType i_VehicleType, string i_plateNumber) : base(2, 30, i_VehicleType, i_plateNumber)
         {
 
             if (i_VehicleType.Equals(eVehicleType.ElectricMotorbike)) 
@@ -63,7 +63,7 @@ Engine Capacity: {2}",
             return InfoMsg;
         }
 
-        public eLicenseType LicenseType
+        internal eLicenseType LicenseType
         {
             get
             {
