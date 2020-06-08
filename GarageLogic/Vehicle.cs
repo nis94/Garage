@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
     public abstract class Vehicle
     {
-        protected readonly string r_PlateNumber; 
+        protected readonly string r_PlateNumber;
         protected readonly eVehicleType r_VehicleType;
         protected string m_ModelName;
         protected float m_EnergyPercentage;
         protected List<Wheel> m_Wheels;
-        protected Engine m_Engine; 
+        protected Engine m_Engine;
 
         public Vehicle(int i_NumOfWheels, float i_MaxAirPressure, eVehicleType i_VehicleType, string i_PlateNumber)
         {
@@ -28,27 +25,54 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public virtual string MoreInfoMessage()
+        public virtual List<string> MoreInfoMessage()
         {
-            string AskForInfoMsg = string.Format(@"
-Please enter the following information, (Please Enter details divided with COMMAS without SPACES and finally press ENTER):
-1) Model name
-2) Current Energy 
-3) Current Air Pressure
-4) Wheels Manufacturer Name");
+            List<string> AskForInfoMsg = new List<string>();
+
+            AskForInfoMsg.Add("Model name");
+            AskForInfoMsg.Add("Amount Of Energy Left");
+            AskForInfoMsg.Add("Current Air Pressure");
+            AskForInfoMsg.Add("Wheels Manufacturer Name");
 
             return AskForInfoMsg;
         }
 
-        public virtual void AddInfo(string[] i_ExtraInfo)
+        public virtual void AddInfo(List<string> i_ExtraInfo)
         {
-            m_ModelName = i_ExtraInfo[0];
-            m_Engine.CurrentEnergyCapacity = float.Parse(i_ExtraInfo[1]);
-            m_EnergyPercentage = (m_Engine.CurrentEnergyCapacity / m_Engine.MaxEnergyCapacity) * 100;
-            foreach (Wheel wheel in m_Wheels)
+            if (i_ExtraInfo[0] != string.Empty)
             {
-                wheel.CurrentAirPresuure = float.Parse(i_ExtraInfo[2]);
-                wheel.ManufacturerName = i_ExtraInfo[3];
+                m_ModelName = i_ExtraInfo[0];
+            }
+            else
+            {
+                throw new FormatException("Model name can't be empty string! Please enter details again");
+            }
+
+            if (float.Parse(i_ExtraInfo[1]) >= 0 && float.Parse(i_ExtraInfo[1]) <= m_Engine.MaxEnergyCapacity)
+            {
+                m_Engine.CurrentEnergyCapacity = float.Parse(i_ExtraInfo[1]);
+                m_EnergyPercentage = (m_Engine.CurrentEnergyCapacity / m_Engine.MaxEnergyCapacity) * 100;
+            }
+            else
+            {
+                throw new ValueOutOfRangeException(0, m_Engine.MaxEnergyCapacity, "Current energy capacity");
+            }
+
+            if (float.Parse(i_ExtraInfo[2]) < 0 || float.Parse(i_ExtraInfo[2]) > m_Wheels[0].MaxAirPressure)
+            {
+                throw new ValueOutOfRangeException(0, m_Wheels[0].MaxAirPressure, "Current energy capacity");
+            }
+            else if (i_ExtraInfo[3] == string.Empty)
+            {
+                throw new FormatException("Wheels manufacture name can't be empty string! Please enter details again");
+            }
+            else
+            {
+                foreach (Wheel wheel in m_Wheels)
+                {
+                    wheel.CurrentAirPresuure = float.Parse(i_ExtraInfo[2]);
+                    wheel.ManufacturerName = i_ExtraInfo[3];
+                }
             }
         }
 
@@ -56,7 +80,7 @@ Please enter the following information, (Please Enter details divided with COMMA
         {
             string InfoMsg = string.Format(
 @"Model name: {0}
-Current Energy percentage: {1} 
+Amount Of Energy Left: {1} 
 Current Air Pressure: {2}
 Wheels Manufacturer Name: {3}",
                 m_ModelName, m_EnergyPercentage, m_Wheels[0].CurrentAirPresuure, m_Wheels[0].ManufacturerName);
@@ -105,7 +129,7 @@ Wheels Manufacturer Name: {3}",
         {
             get
             {
-                return m_Wheels; 
+                return m_Wheels;
             }
         }
     }

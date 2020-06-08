@@ -105,7 +105,7 @@ namespace Ex03.GarageLogic
                         }
                         else
                         {
-                            throw new ValueOutOfRangeException(0, currentEngine.MaxEnergyCapacity - currentEngine.CurrentEnergyCapacity, "Exceeding the maximum tank capacity!");
+                            throw new ValueOutOfRangeException(0, currentEngine.MaxEnergyCapacity - currentEngine.CurrentEnergyCapacity, "Additional amount must be");
                         }
                     }
                     else

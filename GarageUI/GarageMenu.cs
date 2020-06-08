@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Ex02.ConsoleUtils;
 
 namespace Ex03.ConsoleUI
 {
@@ -54,21 +55,26 @@ namespace Ex03.ConsoleUI
             {
                 case eMenuOptions.AddVechile:
                     manageNewVehicleAddition();
+                    Screen.Clear();
                     break;
                 case eMenuOptions.ViewFilteredVehicleList:
                     manageFilteredVehicleList();
                     break;
                 case eMenuOptions.ChangeVehicleStatus:
                     manageVehicleStatusChange();
+                    Screen.Clear();
                     break;
                 case eMenuOptions.InflateVehicleWheels:
                     manageWheelsInflation();
+                    Screen.Clear();
                     break;
                 case eMenuOptions.ReFuelVehicle:
                     manageReFuel();
+                    Screen.Clear();
                     break;
                 case eMenuOptions.ReChargeVehicle:
                     manageReCharge();
+                    Screen.Clear();
                     break;
                 case eMenuOptions.ViewVehicleInfo:
                     manageVehicleInfo();
@@ -114,22 +120,34 @@ namespace Ex03.ConsoleUI
 
         private void manageNewVehicleExtraInfoFromUser(string i_PlateNumber)
         {
-            const int k_NumOfInputStrings = 6;
-            Console.WriteLine(r_GarageManager.VehiclesStorage[i_PlateNumber].Vehicle.MoreInfoMessage());
-            string[] extraVehicleInfo = Console.ReadLine().Split(',');
-            while (extraVehicleInfo.Length != k_NumOfInputStrings)
+            bool isValid = false;
+            List<string> requestMoreDetails;
+
+            while (isValid == false)
             {
-                if (extraVehicleInfo.Length > k_NumOfInputStrings)
+                isValid = true;
+                try
                 {
-                    Console.WriteLine("There are too many parameters, Please try again:");
+                    requestMoreDetails = r_GarageManager.VehiclesStorage[i_PlateNumber].Vehicle.MoreInfoMessage();
+                    List<string> extraVehicleInfo = getExtraVehicleInfoFromUser(requestMoreDetails);
+                    r_GarageManager.VehiclesStorage[i_PlateNumber].Vehicle.AddInfo(extraVehicleInfo);
                 }
-                else
+                catch(FormatException FE)
                 {
-                    Console.WriteLine("There are not enough parameters, Please try again:");
+                    Console.WriteLine(FE.Message);
+                    isValid = false;
                 }
-                extraVehicleInfo = Console.ReadLine().Split(',');
+                catch (ArgumentException AE)
+                {
+                    Console.WriteLine(AE.Message);
+                    isValid = false;
+                }
+                catch (GarageLogic.ValueOutOfRangeException VOORE)
+                {
+                    Console.WriteLine(VOORE.Message);
+                    isValid = false;
+                }
             }
-            r_GarageManager.VehiclesStorage[i_PlateNumber].Vehicle.AddInfo(extraVehicleInfo);
         }
 
         private void manageFilteredVehicleList()
@@ -149,6 +167,7 @@ namespace Ex03.ConsoleUI
                 int StatusFilter = checkStatusFilterValitidy(userInput);
                 printStringArray(r_GarageManager.ShowFilteredPlateNumbers((GarageLogic.eVehicleStatus)StatusFilter));
             }
+            Console.WriteLine(Environment.NewLine);
         }
 
         private void manageVehicleStatusChange()
@@ -174,6 +193,7 @@ namespace Ex03.ConsoleUI
                     plateNumber = getValidPlateNumberFromUser();
                 }
             }
+            Console.WriteLine(Environment.NewLine);
         }
 
         private void manageWheelsInflation()
@@ -300,6 +320,7 @@ namespace Ex03.ConsoleUI
                     plateNumber = getValidPlateNumberFromUser();
                 }
             }
+            Console.WriteLine(Environment.NewLine);
         }
 
         private int checkFilterValidity(string i_UserInput)
@@ -350,6 +371,20 @@ namespace Ex03.ConsoleUI
             {
                 Console.WriteLine(str);
             }
+        }
+
+        private List<string> getExtraVehicleInfoFromUser(List<string> i_RequestStrArr)
+        {
+            List<string> inputStrArr = new List<string>(i_RequestStrArr.Count);
+            int index = 1;
+
+            foreach(string request in i_RequestStrArr)
+            {
+                Console.Write(string.Format("{0}) {1}: ",index++,request));
+                inputStrArr.Add(Console.ReadLine());
+            }
+
+            return inputStrArr;
         }
 
         private string getValidOwnername()
@@ -483,7 +518,7 @@ namespace Ex03.ConsoleUI
                 {
                     fuelAmount = float.Parse(i_UserInput);
                 }
-                catch(FormatException FE)
+                catch(FormatException)
                 {
                     Console.WriteLine("Only Numbers Allowed!");
                     isValid = false;
@@ -499,7 +534,8 @@ namespace Ex03.ConsoleUI
 
             Console.Write(string.Format(@"Please choose one of this options:
 1 - Try Again
-2 - Return to main menu"));
+2 - Return to main menu
+"));
             string userInput = Console.ReadLine();
             while (userInput != "1" && userInput != "2") 
             {
@@ -517,10 +553,9 @@ namespace Ex03.ConsoleUI
         private void exitMenu()
         {
             const int k_ValidExit = 1;
-            Console.WriteLine("Thanks for using our system, see you next time!");
+            Console.WriteLine("Thanks for using our system, See you next time!");
             Environment.Exit(k_ValidExit);
         }
-
     }
 } 
    

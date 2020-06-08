@@ -6,7 +6,7 @@ namespace Ex03.GarageLogic
     internal class Motorbike : Vehicle
     {
         private eLicenseType m_LicenseType;
-        private int m_EngineDisplacement;
+        private int m_EngineCapacity;
 
         public Motorbike(eVehicleType i_VehicleType, string i_plateNumber) : base(2, 30, i_VehicleType, i_plateNumber)
         {
@@ -21,22 +21,35 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public override string MoreInfoMessage()
+        public override List<string> MoreInfoMessage()
         {
-            string AskForInfoMsg = string.Format(
-@"{0}
-License Type: (1-A, 2-A1, 3-AA, 4-B)
-EngineDisplacement: ",
-               base.MoreInfoMessage());
+            List<string> AskForInfoMsg = base.MoreInfoMessage();
+            AskForInfoMsg.Add("License Type (1-A, 2-A1, 3-AA, 4-B)");
+            AskForInfoMsg.Add("EngineCapacity");
 
             return AskForInfoMsg;
         }
 
-        public override void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
+        public override void AddInfo(List<string> i_ExtraInfo) 
         {
             base.AddInfo(i_ExtraInfo);
-            m_LicenseType = (eLicenseType)int.Parse(i_ExtraInfo[4]);
-            m_EngineDisplacement = int.Parse(i_ExtraInfo[5]);
+            if (int.Parse(i_ExtraInfo[4]) <= 4 && int.Parse(i_ExtraInfo[4]) >= 1)
+            {
+                m_LicenseType = (eLicenseType)int.Parse(i_ExtraInfo[4]);
+            }
+            else
+            {
+                throw new ArgumentException("No such option!, Please enter details again");
+            }
+
+            if (int.Parse(i_ExtraInfo[5]) >=0)
+            {
+                m_EngineCapacity = int.Parse(i_ExtraInfo[5]);
+            }
+            else
+            {
+                throw new ArgumentException("Engine capacity can't be negative!, Please enter details again");
+            }
         }
 
         public override string CreateDetails()
@@ -44,8 +57,8 @@ EngineDisplacement: ",
             string InfoMsg = string.Format(
 @"{0}
 License Type: {1}
-Engine Displacement Size: {2}",
-                base.CreateDetails(), m_LicenseType, m_EngineDisplacement);
+Engine Capacity Size: {2}",
+                base.CreateDetails(), m_LicenseType, m_EngineCapacity);
 
             return InfoMsg;
         }
@@ -62,15 +75,15 @@ Engine Displacement Size: {2}",
             }
         }
 
-        public int EngineDisplacement
+        public int EngineCapacity
         {
             get
             {
-                return m_EngineDisplacement;
+                return m_EngineCapacity;
             }
             set
             {
-                m_EngineDisplacement = value;
+                m_EngineCapacity = value;
             }
         }
     }

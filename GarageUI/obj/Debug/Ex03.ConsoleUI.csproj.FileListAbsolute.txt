@@ -8,3 +8,4 @@ C:\Users\nirol\source\repos\Garage\GarageUI\obj\Debug\Ex03.ConsoleUI.csprojAssem
 C:\Users\nirol\source\repos\Garage\GarageUI\obj\Debug\Ex03.ConsoleUI.csproj.CopyComplete
 C:\Users\nirol\source\repos\Garage\GarageUI\obj\Debug\GarageUI.exe
 C:\Users\nirol\source\repos\Garage\GarageUI\obj\Debug\GarageUI.pdb
+C:\Users\nirol\source\repos\Garage\GarageUI\bin\Debug\Ex02.ConsoleUtils.dll

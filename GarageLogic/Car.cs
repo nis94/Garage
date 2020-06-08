@@ -23,22 +23,36 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public override string MoreInfoMessage()
+        public override List<string> MoreInfoMessage()
         {
-            string AskForInfoMsg = string.Format(
-@"{0}
-Color: (1-Red, 2-White, 3-Black, 4-Silver)
-Number Of Doors(2 - 5)",
-            base.MoreInfoMessage());
+            List<string> AskForInfoMsg = base.MoreInfoMessage();
+            AskForInfoMsg.Add("Color (1-Red, 2-White, 3-Black, 4-Silver)");
+            AskForInfoMsg.Add("Number Of Doors(2 - 5)");
 
             return AskForInfoMsg;
         }
       
-        public override void AddInfo(string[] i_ExtraInfo) // To Do : add Exeptions/IfElse
+        public override void AddInfo(List<string> i_ExtraInfo) 
         {
             base.AddInfo(i_ExtraInfo);
-            m_Color = (eColor)int.Parse(i_ExtraInfo[4]);
-            m_NumOfDoors = (eNumOfDoors)int.Parse(i_ExtraInfo[5]);
+            if (int.Parse(i_ExtraInfo[4])<=4&& int.Parse(i_ExtraInfo[4])>=1)
+            {
+                m_Color = (eColor)int.Parse(i_ExtraInfo[4]);
+            }
+            else
+            {
+                throw new ArgumentException("No such option!, Please enter details again");
+            }
+
+            if (int.Parse(i_ExtraInfo[5]) <= 5 && int.Parse(i_ExtraInfo[5]) >= 2)
+            {
+                m_NumOfDoors = (eNumOfDoors)int.Parse(i_ExtraInfo[5]);
+            }
+            else
+            {
+                throw new ArgumentException("No such option!, Please enter details again");
+            }
+
         }
 
         public override string CreateDetails()

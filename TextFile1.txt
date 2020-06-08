@@ -1,10 +1,10 @@
-1) handle exeption in the details (airprusser, precentage...)
-2) BUG in the Presentage of energy  
-3) StyleCop - (Nir-Logic, Liran-UI)
-4) Move to other solution - Nir
+1) Check Exeptions Messages
+2) Check if there is still BUG in the Presentage of energy >100%  
+3) StyleCop + Accses Modifiers - (Nir-Logic, Liran-UI)
+4)
 5) Diagram - Liran
-6) Test All scenarios 
-7) Fuel\Electric Engine endless loop - add back to menu option 
-8) After printing vehicles details to clear before the new menu!!!!(Should add DLL)
-9) Accses Modifiers
-10) string line with commas - -BUG if the last parameter is Empty
+6) Test Multiple scenarios 
+7) 
+8) 
+9) 
+10) 
