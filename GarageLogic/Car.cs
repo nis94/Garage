@@ -41,7 +41,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentException("No such option!, Please enter details again");
+                throw new ArgumentException("No such color option!, Please enter details again");
             }
 
             if (int.Parse(i_ExtraInfo[5]) <= 5 && int.Parse(i_ExtraInfo[5]) >= 2)
@@ -50,7 +50,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ArgumentException("No such option!, Please enter details again");
+                throw new ArgumentException("No such number of doors!, Please enter details again");
             }
 
         }

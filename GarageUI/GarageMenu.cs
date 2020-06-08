@@ -465,7 +465,7 @@ namespace Ex03.ConsoleUI
         
                 while (plateNumber == string.Empty)
                 {
-                    Console.Write("Invalid input!, Please try again");
+                    Console.Write("Invalid input!, Please try again: ");
                     plateNumber = Console.ReadLine();
                 }
 
@@ -492,7 +492,7 @@ namespace Ex03.ConsoleUI
             }
             while (isValid == false)
             {
-                Console.Write("Please enter the fuel type (1-Soler, 2-Octan95, 3-Octan96, 4-Octan98): ");
+                Console.Write("Invalid input!, please try again (1-Soler, 2-Octan95, 3-Octan96, 4-Octan98): ");
                 userInput = Console.ReadLine();
                 isValid = int.TryParse(userInput, out fuelType);
                 if (isValid == true)
@@ -509,7 +509,7 @@ namespace Ex03.ConsoleUI
             bool isValid = false;
             float fuelAmount = 0;
 
-            Console.Write("Please enter fuel amount: ");
+            Console.Write("Please enter energy addition amount: ");
             while (isValid == false)
             {
                 isValid =true;
@@ -545,6 +545,7 @@ namespace Ex03.ConsoleUI
             if (userInput == "2")
             {
                 toReturn = true;
+                Screen.Clear();
             }
 
             return toReturn;
@@ -553,6 +554,7 @@ namespace Ex03.ConsoleUI
         private void exitMenu()
         {
             const int k_ValidExit = 1;
+            Screen.Clear();
             Console.WriteLine("Thanks for using our system, See you next time!");
             Environment.Exit(k_ValidExit);
         }

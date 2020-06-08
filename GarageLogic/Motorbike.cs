@@ -25,7 +25,7 @@ namespace Ex03.GarageLogic
         {
             List<string> AskForInfoMsg = base.MoreInfoMessage();
             AskForInfoMsg.Add("License Type (1-A, 2-A1, 3-AA, 4-B)");
-            AskForInfoMsg.Add("EngineCapacity");
+            AskForInfoMsg.Add("Engine Capacity");
 
             return AskForInfoMsg;
         }
@@ -57,7 +57,7 @@ namespace Ex03.GarageLogic
             string InfoMsg = string.Format(
 @"{0}
 License Type: {1}
-Engine Capacity Size: {2}",
+Engine Capacity: {2}",
                 base.CreateDetails(), m_LicenseType, m_EngineCapacity);
 
             return InfoMsg;
