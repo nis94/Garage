@@ -9,3 +9,14 @@ C:\Users\nirol\source\repos\Garage\GarageUI\obj\Debug\Ex03.ConsoleUI.csproj.Copy
 C:\Users\nirol\source\repos\Garage\GarageUI\obj\Debug\GarageUI.exe
 C:\Users\nirol\source\repos\Garage\GarageUI\obj\Debug\GarageUI.pdb
 C:\Users\nirol\source\repos\Garage\GarageUI\bin\Debug\Ex02.ConsoleUtils.dll
+C:\Users\user\Source\Repos\Garage\GarageUI\bin\Debug\GarageUI.exe.config
+C:\Users\user\Source\Repos\Garage\GarageUI\bin\Debug\GarageUI.exe
+C:\Users\user\Source\Repos\Garage\GarageUI\bin\Debug\GarageUI.pdb
+C:\Users\user\Source\Repos\Garage\GarageUI\bin\Debug\GarageLogic.dll
+C:\Users\user\Source\Repos\Garage\GarageUI\bin\Debug\GarageLogic.pdb
+C:\Users\user\Source\Repos\Garage\GarageUI\bin\Debug\GarageLogic.dll.config
+C:\Users\user\Source\Repos\Garage\GarageUI\obj\Debug\Ex03.ConsoleUI.csprojAssemblyReference.cache
+C:\Users\user\Source\Repos\Garage\GarageUI\obj\Debug\Ex03.ConsoleUI.csproj.CoreCompileInputs.cache
+C:\Users\user\Source\Repos\Garage\GarageUI\obj\Debug\Ex03.ConsoleUI.csproj.CopyComplete
+C:\Users\user\Source\Repos\Garage\GarageUI\obj\Debug\GarageUI.exe
+C:\Users\user\Source\Repos\Garage\GarageUI\obj\Debug\GarageUI.pdb
