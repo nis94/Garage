@@ -35,6 +35,7 @@ namespace Ex03.ConsoleUI
                 {
                     isValid = chosenNumber >= k_MinMenuOption && chosenNumber <= k_MaxMenuOption;
                 }
+
                 while (isValid == false)
                 {
                     Console.Write("Invalid input! Please choose a number from the menu again: ");
@@ -45,6 +46,7 @@ namespace Ex03.ConsoleUI
                         isValid = chosenNumber >= k_MinMenuOption && chosenNumber <= k_MaxMenuOption;
                     }
                 }
+
                 manageUserChoice((eMenuOptions)int.Parse(userInput));
             }
         }
@@ -167,6 +169,7 @@ namespace Ex03.ConsoleUI
                 int StatusFilter = checkStatusFilterValitidy(userInput);
                 printStringArray(r_GarageManager.ShowFilteredPlateNumbers((GarageLogic.eVehicleStatus)StatusFilter));
             }
+
             Console.WriteLine(Environment.NewLine);
         }
 
@@ -190,9 +193,11 @@ namespace Ex03.ConsoleUI
                     {
                         break;
                     }
+
                     plateNumber = getValidPlateNumberFromUser();
                 }
             }
+
             Console.WriteLine(Environment.NewLine);
         }
 
@@ -216,6 +221,7 @@ namespace Ex03.ConsoleUI
                     {
                         break;
                     }
+
                     plateNumber = getValidPlateNumberFromUser();
                 }
             }
@@ -317,9 +323,11 @@ namespace Ex03.ConsoleUI
                     {
                         break;
                     }
+
                     plateNumber = getValidPlateNumberFromUser();
                 }
             }
+
             Console.WriteLine(Environment.NewLine);
         }
 
@@ -330,6 +338,7 @@ namespace Ex03.ConsoleUI
             {
                 isValid = isFiltered == k_Yes || isFiltered == k_No;
             }
+
             while (isValid == false)
             {
                 Console.Write("Invalid Input! please try again (1-Yes,2-No): ");
@@ -351,6 +360,7 @@ namespace Ex03.ConsoleUI
             {
                 isValid = statusFilter <= 3 || statusFilter >= 1;
             }
+
             while (isValid == false)
             {
                 Console.Write("Invalid Input! please try again (1-In Progress, 2-Fixed, 3-Paid): ");
@@ -380,7 +390,7 @@ namespace Ex03.ConsoleUI
 
             foreach(string request in i_RequestStrArr)
             {
-                Console.Write(string.Format("{0}) {1}: ",index++,request));
+                Console.Write(string.Format("{0}) {1}: ", index++, request));
                 inputStrArr.Add(Console.ReadLine());
             }
 
@@ -397,6 +407,7 @@ namespace Ex03.ConsoleUI
                 Console.Write("Invalid Name!, Please try again: ");
                 ownerName = Console.ReadLine();
             }
+
             return ownerName;
         }
 
@@ -461,7 +472,7 @@ namespace Ex03.ConsoleUI
         private string getValidPlateNumberFromUser()
         {
             Console.Write("Please enter vehicle plate number: ");
-            string plateNumber=Console.ReadLine();
+            string plateNumber = Console.ReadLine();
         
                 while (plateNumber == string.Empty)
                 {
@@ -476,7 +487,7 @@ namespace Ex03.ConsoleUI
         {
             Console.Write("Please enter the new status (1-In Progress, 2-Fixed, 3-Paid): ");
             string userInput = Console.ReadLine();
-            int chosenStatus=checkStatusFilterValitidy(userInput);
+            int chosenStatus = checkStatusFilterValitidy(userInput);
 
             return (GarageLogic.eVehicleStatus)chosenStatus;
         }
@@ -490,6 +501,7 @@ namespace Ex03.ConsoleUI
             {
                 isValid = fuelType <= 4 && fuelType >= 1;
             }
+
             while (isValid == false)
             {
                 Console.Write("Invalid input!, please try again (1-Soler, 2-Octan95, 3-Octan96, 4-Octan98): ");
@@ -512,7 +524,7 @@ namespace Ex03.ConsoleUI
             Console.Write("Please enter energy addition amount: ");
             while (isValid == false)
             {
-                isValid =true;
+                isValid = true;
                 string i_UserInput = Console.ReadLine();
                 try
                 {
@@ -542,6 +554,7 @@ namespace Ex03.ConsoleUI
                 Console.Write("Invalid input!, Please choose '1' or '2': ");
                 userInput = Console.ReadLine();
             }
+
             if (userInput == "2")
             {
                 toReturn = true;
@@ -560,5 +573,3 @@ namespace Ex03.ConsoleUI
         }
     }
 } 
-   
-
