@@ -10,7 +10,6 @@ namespace Ex03.GarageLogic
 
         internal Motorbike(eVehicleType i_VehicleType, string i_plateNumber) : base(2, 30, i_VehicleType, i_plateNumber)
         {
-
             if (i_VehicleType.Equals(eVehicleType.ElectricMotorbike)) 
             {
                 m_Engine = new ElectricEngine(1.2f);
@@ -42,7 +41,7 @@ namespace Ex03.GarageLogic
                 throw new ArgumentException("No such option!, Please enter details again");
             }
 
-            if (int.Parse(i_ExtraInfo[5]) >=0)
+            if (int.Parse(i_ExtraInfo[5]) >= 0) 
             {
                 m_EngineCapacity = int.Parse(i_ExtraInfo[5]);
             }
@@ -58,7 +57,9 @@ namespace Ex03.GarageLogic
 @"{0}
 License Type: {1}
 Engine Capacity: {2}",
-                base.CreateDetails(), m_LicenseType, m_EngineCapacity);
+                base.CreateDetails(),
+                m_LicenseType,
+                m_EngineCapacity);
 
             return InfoMsg;
         }
@@ -69,6 +70,7 @@ Engine Capacity: {2}",
             {
                 return m_LicenseType;
             }
+
             set
             {
                 m_LicenseType = value;
@@ -81,6 +83,7 @@ Engine Capacity: {2}",
             {
                 return m_EngineCapacity;
             }
+
             set
             {
                 m_EngineCapacity = value;

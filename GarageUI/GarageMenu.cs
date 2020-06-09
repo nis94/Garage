@@ -6,9 +6,9 @@ namespace Ex03.ConsoleUI
 {
     public class GarageMenu
     {
-        private readonly GarageLogic.GarageManager r_GarageManager = new GarageLogic.GarageManager();
         private const int k_Yes = 1;
         private const int k_No = 2;
+        private readonly GarageLogic.GarageManager r_GarageManager = new GarageLogic.GarageManager();
 
         internal void RunMenu()
         {
@@ -415,12 +415,11 @@ namespace Ex03.ConsoleUI
         {
             Console.Write("Please enter vehicle owner phone number: ");
             string ownerPhone = Console.ReadLine();
-            int phoneNumber;
             bool isValidOwnerPhone = false;
 
             if (ownerPhone != string.Empty)
             {
-                isValidOwnerPhone = int.TryParse(ownerPhone, out phoneNumber);
+                isValidOwnerPhone = int.TryParse(ownerPhone, out int phoneNumber);
             }
 
             while (isValidOwnerPhone == false)
@@ -429,7 +428,7 @@ namespace Ex03.ConsoleUI
                 ownerPhone = Console.ReadLine();
                 if (ownerPhone != string.Empty)
                 {
-                    isValidOwnerPhone = int.TryParse(ownerPhone, out phoneNumber);
+                    isValidOwnerPhone = int.TryParse(ownerPhone, out int phoneNumber);
                 }
             }
 

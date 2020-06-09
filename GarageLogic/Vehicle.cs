@@ -78,16 +78,19 @@ namespace Ex03.GarageLogic
 
         public virtual string CreateDetails()
         {
-            string InfoMsg = string.Format(
+            string InfoMsg =
+                string.Format(
 @"Model name: {0}
 Amount Of Energy Left: {1}% 
 Current Air Pressure: {2}
 Wheels Manufacturer Name: {3}",
-                m_ModelName, m_EnergyPercentage, m_Wheels[0].CurrentAirPresuure, m_Wheels[0].ManufacturerName);
+                m_ModelName,
+                m_EnergyPercentage,
+                m_Wheels[0].CurrentAirPresuure,
+                m_Wheels[0].ManufacturerName);
 
             return InfoMsg;
         }
-
 
         public string Model
         {
@@ -111,6 +114,7 @@ Wheels Manufacturer Name: {3}",
             {
                 return m_EnergyPercentage;
             }
+
             set
             {
                 m_EnergyPercentage = value;

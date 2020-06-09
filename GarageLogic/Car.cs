@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
-    class Car : Vehicle
+    internal class Car : Vehicle
     {
-        eColor m_Color;
-        eNumOfDoors m_NumOfDoors;
+        private eColor m_Color;
+        private eNumOfDoors m_NumOfDoors;
 
         internal Car(eVehicleType i_VehicleType, string i_plateNumber) : base(4, 32, i_VehicleType, i_plateNumber)
         {
@@ -32,7 +32,8 @@ namespace Ex03.GarageLogic
         public override void AddInfo(List<string> i_ExtraInfo) 
         {
             base.AddInfo(i_ExtraInfo);
-            if (int.Parse(i_ExtraInfo[4])<=4&& int.Parse(i_ExtraInfo[4])>=1)
+
+            if (int.Parse(i_ExtraInfo[4]) <= 4 && int.Parse(i_ExtraInfo[4]) >= 1) 
             {
                 m_Color = (eColor)int.Parse(i_ExtraInfo[4]);
             }
@@ -49,16 +50,17 @@ namespace Ex03.GarageLogic
             {
                 throw new ArgumentException("No such number of doors!, Please enter details again");
             }
-
         }
 
         public override string CreateDetails()
-        { 
+        {
             string InfoMsg = string.Format(
 @"{0}
 Color: {1}
 Number Of Doors: {2}",
-                base.CreateDetails(), m_Color, m_NumOfDoors);
+                base.CreateDetails(),
+                m_Color,
+                m_NumOfDoors);
 
             return InfoMsg;
         }
@@ -69,23 +71,24 @@ Number Of Doors: {2}",
             {
                 return m_Color;
             }
+
             set
             {
                 m_Color = value;
             }
         }
+
         internal eNumOfDoors NumOfDoors 
         {
             get
             {
                 return m_NumOfDoors;
             }
+
             set
             {
                 m_NumOfDoors = value;
             }
         }
-
     }
 }
-

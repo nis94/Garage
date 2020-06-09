@@ -5,8 +5,8 @@ namespace Ex03.GarageLogic
 {
     internal class Truck : Vehicle
     {
-        bool m_IsCarryingHazardousMaterials;
-        float m_ChargeCapacity;
+        private bool m_IsCarryingHazardousMaterials;
+        private float m_ChargeCapacity;
 
         internal Truck(eVehicleType i_VehicleType, string i_plateNumber) : base(16, 28, i_VehicleType, i_plateNumber)
         {
@@ -18,7 +18,7 @@ namespace Ex03.GarageLogic
             List<string> AskForInfoMsg = base.MoreInfoMessage();
             AskForInfoMsg.Add("Is Carrying Hazardous Materials? (true/false)");
             AskForInfoMsg.Add("Charge Capacity");
-  
+
             return AskForInfoMsg;
         }
 
@@ -50,7 +50,9 @@ namespace Ex03.GarageLogic
 @"{0}
 Is Carrying Hazardous Materials?: {1}
 Charge Capacity Size: {2}",
-                base.CreateDetails(), m_IsCarryingHazardousMaterials, m_ChargeCapacity);
+                base.CreateDetails(),
+                m_IsCarryingHazardousMaterials,
+                m_ChargeCapacity);
 
             return InfoMsg;
         }
@@ -61,6 +63,7 @@ Charge Capacity Size: {2}",
             {
                 return m_IsCarryingHazardousMaterials;
             }
+
             set
             {
                 m_IsCarryingHazardousMaterials = value;
@@ -73,12 +76,11 @@ Charge Capacity Size: {2}",
             {
                 return m_ChargeCapacity;
             }
+
             set
             {
                 m_ChargeCapacity = value;
             }
         }
-
     }
-
 }

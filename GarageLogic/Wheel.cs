@@ -16,15 +16,15 @@ namespace Ex03.GarageLogic
         public void InflateWheel (float i_AmountOfAirToAdd)
         {
             float UpdatedAirPressure = i_AmountOfAirToAdd + m_CurrentAirPressure;
+
             if (UpdatedAirPressure > r_MaxAirPressure)
             {
-                Console.WriteLine("Exceeding the Maximum Air pressure"); //to do exception
+                Console.WriteLine("Exceeding the Maximum Air pressure"); 
             }
             else
             {
                 m_CurrentAirPressure = UpdatedAirPressure; 
             }
-
         }
 
         public string ManufacturerName
@@ -33,6 +33,7 @@ namespace Ex03.GarageLogic
             {
                 return m_ManufacturerName;
             }
+
             set 
             { 
                 m_ManufacturerName = value; 
@@ -45,6 +46,7 @@ namespace Ex03.GarageLogic
             { 
                 return m_CurrentAirPressure;
             }
+
             set
             {
                 m_CurrentAirPressure = value;

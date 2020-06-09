@@ -28,6 +28,7 @@ namespace Ex03.GarageLogic
         {
             get { return r_MaxEnergyCapacity; }
         }
+
         public eEngineType Type
         {
             get { return r_EngineType; }

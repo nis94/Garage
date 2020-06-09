@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    class VehicleCreator
+    public class VehicleCreator
     {
         public static Vehicle CreateNewVehicle(eVehicleType i_VehicleType, string i_plateNumber)
         {
@@ -37,5 +37,3 @@ namespace Ex03.GarageLogic
         }
     }
 }
-
-

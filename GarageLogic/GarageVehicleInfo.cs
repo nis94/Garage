@@ -27,6 +27,7 @@ namespace Ex03.GarageLogic
             {
                 return m_VehicleStatus;
             }
+
             set 
             {
                 m_VehicleStatus = value; 
@@ -39,6 +40,7 @@ namespace Ex03.GarageLogic
             {
                 return m_OwnerName; 
             }
+
             set
             {
                 m_OwnerName = value;
@@ -51,6 +53,7 @@ namespace Ex03.GarageLogic
             { 
                 return m_OwnerPhoneNumber;
             }
+
             set
             {
                 m_OwnerPhoneNumber = value;
@@ -63,12 +66,11 @@ namespace Ex03.GarageLogic
             { 
                 return m_Vehicle;
             }
+
             set 
             { 
                 m_Vehicle = value;
             }
         }
-
     }
 } 
-    

@@ -54,7 +54,6 @@ namespace Ex03.GarageLogic
                 }
             }
 
-
             return PlateNumbersList;
         }
 
@@ -125,8 +124,7 @@ namespace Ex03.GarageLogic
         }
 
         public void ReCharge(string i_PlateNumber, float i_MinutesAmount)
-        {
-
+        { 
             if (r_VehiclesStorage.ContainsKey(i_PlateNumber) == true)
             {
                 Vehicle currentVehicle = r_VehiclesStorage[i_PlateNumber].Vehicle;
@@ -168,12 +166,16 @@ namespace Ex03.GarageLogic
                 GarageVehicleInfo currentVehicleInfo = r_VehiclesStorage[i_PlateNumber];
                 Vehicle currentvehicle = currentVehicleInfo.Vehicle;
 
-                string Details = string.Format(@"
+                string Details = string.Format(
+                    @"
 Owner Name is: {0}
 OWner phone number is: {1}
 Vehicle status is: {2}
 {3}",
-            currentVehicleInfo.OwnerName, currentVehicleInfo.PhoneNumber, currentVehicleInfo.Status, currentvehicle.CreateDetails());
+            currentVehicleInfo.OwnerName,
+            currentVehicleInfo.PhoneNumber,
+            currentVehicleInfo.Status,
+            currentvehicle.CreateDetails());
 
                 return Details;
             }
