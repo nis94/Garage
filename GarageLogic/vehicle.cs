@@ -12,7 +12,7 @@ namespace Ex03.GarageLogic
         protected List<Wheel> m_Wheels;
         protected Engine m_Engine;
 
-        public Vehicle(int i_NumOfWheels, float i_MaxAirPressure, eVehicleType i_VehicleType, string i_PlateNumber)
+        internal Vehicle(int i_NumOfWheels, float i_MaxAirPressure, eVehicleType i_VehicleType, string i_PlateNumber)
         {
             r_PlateNumber = i_PlateNumber;
             m_Wheels = new List<Wheel>();
